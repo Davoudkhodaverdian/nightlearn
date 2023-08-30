@@ -1,21 +1,11 @@
-import Footer from "./footer";
-import Menu from "./menu";
-
-const Home : React.FC = ()=>{
-    
-    return (
-        <div>
-            <Menu/>
-            <div>ijijijji</div>
-      <div>ijijijji</div>
-      <div>ijijijji</div>
-      <div>ijijijji</div>
-      <div>ijijijji</div>
-      <div>ijijijji</div>
-
-            <Footer/>
-        </div>
-    )
+import Link from 'next/link';
+ 
+const Home = () => {
+  return (
+    <div> 
+    <div>home page</div>
+    </div>
+  )
 }
-
+ 
 export default Home;

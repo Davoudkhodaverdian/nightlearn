@@ -1,0 +1,14 @@
+import Link from "next/link";
+
+const Auth : React.FC = ()=>{
+
+    return (
+        <div>
+            <div className="px-3 py-4 cursor-pointer">
+                <Link href={'/register'}  className="text-white rounded bg-[#0c056d] px-3 py-2 cursor-pointer" >وارد شوید/ عضویت</Link>
+            </div>
+        </div>
+    )
+}
+
+export default Auth;

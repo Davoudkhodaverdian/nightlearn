@@ -1,8 +1,10 @@
+import Link from 'next/link';
 import ItemsData from './itemsData.json';
 
 interface DashboardItem {
-    name: string
     id: string
+    name: string
+    url: string
 }
 
 const Items : React.FC = ()=>{
@@ -12,7 +14,7 @@ const Items : React.FC = ()=>{
             {ItemsData.map((item: DashboardItem)=>(
                 <div className='px-3 py-4 cursor-pointer' key={item.id}>
                     <div>
-                        {item.name}
+                     <Link href={item.url}>{item.name}</Link>  
                     </div>
                 </div>
             ))}
