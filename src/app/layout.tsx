@@ -1,6 +1,9 @@
+'use client'
 import BaseLayout from '@/components/layouts/baseLayout'
 import './styles/globals.css'
 import type { Metadata } from 'next'
+import { Provider } from 'react-redux'
+import { store } from '@/services/store'
 
 
 export const metadata: Metadata = {
@@ -14,8 +17,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+    <Provider store={store}>
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    </Provider>
   )
 }

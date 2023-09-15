@@ -35,6 +35,7 @@ const Register : React.FC = ()=> {
       }
     } catch (error) {
       setLoading(false);
+      alert("متاسفانه خطایی رخ داده است");
       console.log(error);
     }
   }
@@ -47,7 +48,7 @@ const Register : React.FC = ()=> {
           validationSchema={SignupSchema}
           onSubmit={(values: Signup, formikHelpers: FormikHelpers<Signup>) => {
             // same shape as initial values
-            console.log(values);
+            // console.log(values);
             getAuthUser(values,formikHelpers);
           }}
       >
