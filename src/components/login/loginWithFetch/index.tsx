@@ -7,7 +7,7 @@ import LoginForm from './../form';
 import Link from 'next/link';
 import { LoginError } from './../models/signinError';
 import Data from './../data.json';
-import { useCookies } from 'react-cookie';
+
 
 
 const Login: React.FC = () => {
@@ -15,7 +15,7 @@ const Login: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const initialValues: Signin = { email: '', phoneNumber: '', password: '' };
     console.log("Login")
-    const [cookies, setCookie] = useCookies(['nightlearn-token']);
+
     const getAuthUser = async (values: Signin, formikHelpers: FormikHelpers<Signin>) => {
 
         try {
@@ -37,11 +37,6 @@ const Login: React.FC = () => {
 
             if (data?.status === 200) {
                 // do some thing
-                setCookie("nightlearn-token", data?.response?.data?.tocken, {
-                    maxAge: 3600 * 24 * 90, // three month
-                    domain: ".localhost"
-                    // domain: process.env.NODE_ENV === "development" ? "localhost" : process.env.DOMAIN
-                });
 
             } else if (data?.errors) {
                 data?.errors?.map((item: LoginError) => {

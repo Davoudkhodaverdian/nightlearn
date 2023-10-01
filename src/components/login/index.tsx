@@ -7,14 +7,15 @@ import LoginForm from './form';
 import Link from 'next/link';
 import { LoginError } from './models/signinError';
 import Data from './data.json';
-import { useCookies } from 'react-cookie';
+
 import { useLoginUserMutation } from '@/services/authApi';
+import { storeAuthToken } from '@/services/cookie';
 
 const Login: React.FC = () => {
   const initialValues: Signin = { email: '', phoneNumber: '', password: '' };
   const [loginUser, { isLoading }] = useLoginUserMutation();
   console.log("Login")
-  const [cookies, setCookie] = useCookies(['nightlearn-token']);
+
   const getAuthUser = async (values: Signin, formikHelpers: FormikHelpers<Signin>) => {
     try {
       // fetch with rtk query
@@ -22,11 +23,7 @@ const Login: React.FC = () => {
       console.log(data);
       if (data?.status === 200) {
         // do some thing
-        setCookie("nightlearn-token", data?.response?.data?.tocken, {
-          maxAge: 3600 * 24 * 90, // three month
-          domain: ".localhost"
-          // domain: process.env.NODE_ENV === "development" ? "localhost" : process.env.DOMAIN
-        });
+        storeAuthToken(data?.response?.data?.tocken);
       }
     } catch (error: any) {
       console.log(error);
@@ -40,7 +37,6 @@ const Login: React.FC = () => {
       } else {
         alert("متاسفانه خطایی رخ داده است");
         console.log(error);
-
       }
     }
   }

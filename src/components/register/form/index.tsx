@@ -1,6 +1,7 @@
 import { Field, Form ,FormikTouched,FormikErrors } from "formik";
 import { Signup } from "../models/signup";
 import { useState } from "react";
+import Loading from "@/components/loading";
 
 
 
@@ -53,8 +54,12 @@ return (
     {errors.password && touched.password && <div className='text-red-600'>{errors.password}</div>}
     </div>
     <div className="flex flex-row-reverse justify-end">
-        {loading && <div className="flex items-center justify-center"><span>loading...</span></div>}
-        <button className='p-3 text-white rounded bg-[#0c056d] px-3 py-2 cursor-pointer' type="submit">ثبت نام</button>
+        <button className='p-3 text-white rounded bg-[#0c056d] px-3 py-2 cursor-pointer' type="submit">
+        <div className="flex">
+                <div>ثبت نام</div>
+                <div>{loading && <Loading/>}</div>
+            </div>
+        </button>
     </div>
 </Form>
 )
