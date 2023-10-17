@@ -8,8 +8,10 @@ import Link from 'next/link';
 import { LoginError } from './models/signinError';
 import Data from './data.json';
 
-import { useLoginUserMutation } from '@/services/authApi';
+import { useLoginUserMutation } from '@/services/api';
 import { storeAuthToken } from '@/services/cookie';
+import { SerializedError } from '@reduxjs/toolkit';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
 
 const Login: React.FC = () => {
   const initialValues: Signin = { email: '', phoneNumber: '', password: '' };
@@ -23,9 +25,9 @@ const Login: React.FC = () => {
       console.log(data);
       if (data?.status === 200) {
         // do some thing
-        storeAuthToken(data?.response?.data?.tocken);
+        storeAuthToken(data?.response?.data?.token);
       }
-    } catch (error: any) {
+    } catch (error:any) {
       console.log(error);
       if (error?.data?.errors) {
         error?.data?.errors?.map((item: LoginError) => {

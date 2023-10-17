@@ -1,4 +1,4 @@
-import AuthLayout from "@/components/layouts/authLayout"
+import BaseLayout from "@/components/layouts/baseLayout"
 
 export default function RootAuthLayout({
   children,
@@ -6,6 +6,6 @@ export default function RootAuthLayout({
   children: React.ReactNode
 }) {
   return (
-    <AuthLayout>{children}</AuthLayout>
+    <BaseLayout>{children}</BaseLayout>
   )
 }

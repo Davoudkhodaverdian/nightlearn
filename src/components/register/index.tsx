@@ -8,13 +8,15 @@ import { SignupError } from './models/signupError';
 import Data from './data.json';
 import Link from 'next/link';
 
-const Register : React.FC = ()=> {
+const Register: React.FC = () => {
 
-  const [loading,setLoading] = useState(false);
-  const getAuthUser = async (values: Signup, formikHelpers: FormikHelpers<Signup>)=>{
+  const [loading, setLoading] = useState(false);
+  const getAuthUser = async (values: Signup, formikHelpers: FormikHelpers<Signup>) => {
     try {
       setLoading(true);
-        const result = await fetch('http://localhost:9000/api/auth/register',{
+      // const baseUrl = 'http://localhost:9000/api/auth/register';  // mysql
+      const baseUrl = 'http://localhost:27017/api/auth/register';  // mongodb
+      const result = await fetch(baseUrl, {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         headers: {
           "Content-Type": "application/json",
@@ -26,9 +28,9 @@ const Register : React.FC = ()=> {
       setLoading(false);
       console.log(data);
       if (data?.errors) {
-        data?.errors?.map((item : SignupError)=>{
-          const field = Data.find(i=>i?.name===item?.path) ? item?.path : "password";
-          formikHelpers.setFieldError(field ,item?.message)
+        data?.errors?.map((item: SignupError) => {
+          const field = Data.find(i => i?.name === item?.path) ? item?.path : "password";
+          formikHelpers.setFieldError(field, item?.message)
         })
       } else if (data?.error) {
         alert(data?.error?.message);
@@ -39,25 +41,25 @@ const Register : React.FC = ()=> {
       console.log(error);
     }
   }
-  const initialValues : Signup ={firstName: '',lastName: '',email: '',phoneNumber:'',password:''};
+  const initialValues: Signup = { firstName: '', lastName: '', email: '', phoneNumber: '', password: '' };
   return (
     <div dir='rtl' className="p-12 ">
       <div className='text-xl p-3' >ثبت نام</div>
       <Formik
         initialValues={initialValues}
-          validationSchema={SignupSchema}
-          onSubmit={(values: Signup, formikHelpers: FormikHelpers<Signup>) => {
-            // same shape as initial values
-            // console.log(values);
-            getAuthUser(values,formikHelpers);
-          }}
+        validationSchema={SignupSchema}
+        onSubmit={(values: Signup, formikHelpers: FormikHelpers<Signup>) => {
+          // same shape as initial values
+          // console.log(values);
+          getAuthUser(values, formikHelpers);
+        }}
       >
         {({ errors, touched }) => (
-          <RegisterForm loading={loading} errors={errors} touched={touched}/>
+          <RegisterForm loading={loading} errors={errors} touched={touched} />
         )}
       </Formik>
       <div className='p-3'>
-          <Link href={'/login'}>وارد شوید</Link>
+        <Link href={'/login'}>وارد شوید</Link>
       </div>
     </div>
   )

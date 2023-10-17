@@ -1,10 +1,8 @@
-'use client'
-import BaseLayout from '@/components/layouts/baseLayout'
+'use client';
 import './styles/globals.css'
 import type { Metadata } from 'next'
 import { Provider } from 'react-redux'
 import { store } from '@/services/store'
-
 
 export const metadata: Metadata = {
   title: 'Create Next App',

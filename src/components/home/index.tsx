@@ -10,7 +10,7 @@ const Home = () => {
   // console.log(today);
 
   let today = new Date().toLocaleDateString('fa-IR-u-nu-latn');
-  console.log(today);
+  console.log({today});
 
   return (
     <div dir='rtl'>

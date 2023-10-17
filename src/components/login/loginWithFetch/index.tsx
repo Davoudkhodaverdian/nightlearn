@@ -46,7 +46,7 @@ const Login: React.FC = () => {
             } else if (data?.error) {
                 alert(data?.error?.message);
             }
-        } catch (error: any) {
+        } catch (error) {
             setLoading(false);
             alert("متاسفانه خطایی رخ داده است");
             console.log(error);
