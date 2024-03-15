@@ -1,6 +1,4 @@
-import Link from 'next/link';
-
-
+'use client';
 
 
 const Home = () => {
@@ -10,12 +8,18 @@ const Home = () => {
   // console.log(today);
 
   let today = new Date().toLocaleDateString('fa-IR-u-nu-latn');
-  console.log({today});
+  console.log({ today });
 
   return (
     <div dir='rtl'>
       <div className='p-3'> تاریخ امروز {today} - {new Date().toLocaleDateString()}</div>
-      <div className='p-3'>home page</div>
+      <div>
+        <div dir='ltr'>
+        <div className='p-3'>home page</div>
+        </div>
+      </div>
+
+      
     </div>
   )
 }

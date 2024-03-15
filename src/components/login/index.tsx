@@ -10,8 +10,7 @@ import Data from './data.json';
 
 import { useLoginUserMutation } from '@/services/api';
 import { storeAuthToken } from '@/services/cookie';
-import { SerializedError } from '@reduxjs/toolkit';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/dist/query';
+
 
 const Login: React.FC = () => {
   const initialValues: Signin = { email: '', phoneNumber: '', password: '' };
