@@ -1,5 +1,6 @@
 // Need to use the React-specific entry point to allow generating React hooks
 import { Signin } from '@/components/login/models/signin'
+import { Signup } from '@/components/register/models/signup'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 // Define a service using a base URL and expected endpoints
@@ -12,6 +13,15 @@ export const authApi = createApi({
       query: (body: Signin) => {
         return {
           url: "auth/login",
+          method: "post",
+          body
+        }
+      },
+    }),
+    registerUser: builder.mutation({
+      query: (body: Signup) => {
+        return {
+          url: "auth/register",
           method: "post",
           body
         }
@@ -34,4 +44,4 @@ export const authApi = createApi({
 
 // Export hooks for usage in function components, which are
 // auto-generated based on the defined endpoints
-export const { useLoginUserMutation, useAuthUserQuery } = authApi
+export const { useRegisterUserMutation,useLoginUserMutation, useAuthUserQuery } = authApi

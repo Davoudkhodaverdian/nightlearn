@@ -1,12 +1,8 @@
+import Panel from "@/components/panel";
 
-export default function Panel() {
+export default function PanelPage() {
 
   return (
-
-    <div className="flex  flex-col  justify-between p-4">
-      <div>
-      Panel page
-      </div>
-    </div>
+    <Panel/>
   )
 }

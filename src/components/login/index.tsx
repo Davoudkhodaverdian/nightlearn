@@ -10,13 +10,13 @@ import Data from './data.json';
 
 import { useLoginUserMutation } from '@/services/api';
 import { storeAuthToken } from '@/services/cookie';
+import { useRouter } from 'next/navigation'
 
 
 const Login: React.FC = () => {
   const initialValues: Signin = { email: '', phoneNumber: '', password: '' };
   const [loginUser, { isLoading }] = useLoginUserMutation();
-  console.log("Login")
-
+  const router = useRouter();
   const getAuthUser = async (values: Signin, formikHelpers: FormikHelpers<Signin>) => {
     try {
       // fetch with rtk query
@@ -25,6 +25,7 @@ const Login: React.FC = () => {
       if (data?.status === 200) {
         // do some thing
         storeAuthToken(data?.response?.data?.token);
+        router.push("/user");
       }
     } catch (error:any) {
       console.log(error);

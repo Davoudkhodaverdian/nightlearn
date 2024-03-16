@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { Formik, FormikHelpers } from 'formik';
 import RegisterForm from './form';
 import { Signup } from './models/signup';
@@ -7,41 +7,40 @@ import { SignupSchema } from './signupSchema';
 import { SignupError } from './models/signupError';
 import Data from './data.json';
 import Link from 'next/link';
+import { useRegisterUserMutation } from '@/services/api';
+import { storeAuthToken } from '@/services/cookie';
+import { useRouter } from 'next/navigation'
 
 const Register: React.FC = () => {
-
-  const [loading, setLoading] = useState(false);
+  const initialValues: Signup = { firstName: '', lastName: '', email: '', phoneNumber: '', password: '' };
+  const [registerUser, { isLoading }] = useRegisterUserMutation();
+  const router = useRouter();
   const getAuthUser = async (values: Signup, formikHelpers: FormikHelpers<Signup>) => {
     try {
-      setLoading(true);
-      // const baseUrl = 'http://localhost:9000/api/auth/register';  // mysql
-      const baseUrl = 'http://localhost:27017/api/auth/register';  // mongodb
-      const result = await fetch(baseUrl, {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        headers: {
-          "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(values), // body data type must match "Content-Type" header
-      });
-      const data = await result.json();
-      setLoading(false);
+      // fetch with rtk query
+      const data = await registerUser(values).unwrap();
       console.log(data);
-      if (data?.errors) {
-        data?.errors?.map((item: SignupError) => {
+      if (data?.status === 200) {
+        // do some thing
+        storeAuthToken(data?.response?.data?.token);
+        router.push("/user");
+      }
+    } catch (error: any) {
+      console.log(error);
+      if (error?.data?.errors) {
+        error?.data?.errors?.map((item: SignupError) => {
           const field = Data.find(i => i?.name === item?.path) ? item?.path : "password";
           formikHelpers.setFieldError(field, item?.message)
         })
-      } else if (data?.error) {
-        alert(data?.error?.message);
+      } else if (error?.data?.error) {
+        alert(error?.data?.error?.message);
+      } else {
+        alert("متاسفانه خطایی رخ داده است");
+        console.log(error);
       }
-    } catch (error) {
-      setLoading(false);
-      alert("متاسفانه خطایی رخ داده است");
-      console.log(error);
     }
   }
-  const initialValues: Signup = { firstName: '', lastName: '', email: '', phoneNumber: '', password: '' };
+  
   return (
     <div dir='rtl' className="p-12 ">
       <div className='text-xl p-3' >ثبت نام</div>
@@ -55,7 +54,7 @@ const Register: React.FC = () => {
         }}
       >
         {({ errors, touched }) => (
-          <RegisterForm loading={loading} errors={errors} touched={touched} />
+          <RegisterForm loading={isLoading} errors={errors} touched={touched} />
         )}
       </Formik>
       <div className='p-3'>

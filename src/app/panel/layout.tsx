@@ -13,12 +13,12 @@ export default function RootBaseLayout({
   const router = useRouter()
   const { data, isLoading, error } = useAuth();
   console.log({ data, isLoading, error });
-  
-  useEffect(() => {
-    if (!isLoading && error) router.push("/");
-  }, [isLoading, error]);
 
-  if (!isLoading && error) return <></>;
+  useEffect(() => {
+    if (!isLoading && (!data || error)) router.push("/");
+  }, [isLoading, error, data]);
+
+  if (!isLoading && (!data || error)) return <></>;
   return (
     <div>
       <div className={!isLoading ? 'hidden' : 'flex justify-center items-center h-[100vh]'}>
