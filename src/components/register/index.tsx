@@ -22,7 +22,7 @@ const Register: React.FC = () => {
       console.log(data);
       if (data?.status === 200) {
         // do some thing
-        storeAuthToken(data?.response?.data?.token);
+        await storeAuthToken(data?.response?.data?.token);
         router.push("/user");
       }
     } catch (error: any) {

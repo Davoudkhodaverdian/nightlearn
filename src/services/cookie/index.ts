@@ -1,22 +1,38 @@
+// import Cookies from 'universal-cookie';
 
-import Cookies from 'universal-cookie';
 
-const cookies = new Cookies();
+// storeAuthToken without http only start
+// const storeAuthToken = (token: string) => {
+//     const cookies = new Cookies();
+//     cookies.set('nightlearn-token', token, {
+//         path: '/',
+//         domain: ".localhost",
+//         maxAge: 3600 * 24 * 30 * 3, // 3 month
+//         // secure: true // Is only accessible through HTTPS
+//         // httpOnly: true // Is only the server can access the cookie? Note: You cannot get or set httpOnly cookies from the browser, only the server.
+//     })
+// }
+// storeAuthToken without http only end
 
-const storeAuthToken = (token: string) => {
+// storeAuthToken with http only start
+const storeAuthToken = async (token: string) => {
+    try {
+        let res = await fetch("/api", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ token })
+        });
+        console.log({ res })
 
-    cookies.set('nightlearn-token', token, {
-        path: '/',
-        domain: ".localhost",
-        maxAge: 3600 * 24 * 30 * 3, // 3 month
-        // secure: true // Is only accessible through HTTPS
-        // httpOnly: true // Is only the server can access the cookie? Note: You cannot get or set httpOnly cookies from the browser, only the server.
-    })
-}
-
+    } catch (error) {
+        console.log({ error })
+    }
+};
+// storeAuthToken with http only end
 
 const removeAuthToken = () => {
-
 
 }
 

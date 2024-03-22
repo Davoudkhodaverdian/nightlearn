@@ -6,8 +6,11 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 // Define a service using a base URL and expected endpoints
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:9000/api/' }), // mysql
-  // baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:27017/api/' }), // mongodb
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'http://localhost:9000/api/',  // mysql
+    // baseUrl: 'http://localhost:27017/api/', // mongodb
+    credentials: "include"
+  }),
   endpoints: (builder) => ({
     loginUser: builder.mutation({
       query: (body: Signin) => {
@@ -32,16 +35,13 @@ export const authApi = createApi({
         return {
           url: "user",
           method: "GET",
-          headers: {
-            authorization: token
-          }
+          // headers: { authorization: token } // send token for backend when httponly is not active
         }
       },
-
     }),
   }),
 })
 
 // Export hooks for usage in function components, which are
 // auto-generated based on the defined endpoints
-export const { useRegisterUserMutation,useLoginUserMutation, useAuthUserQuery } = authApi
+export const { useRegisterUserMutation, useLoginUserMutation, useAuthUserQuery } = authApi

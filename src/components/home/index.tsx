@@ -8,7 +8,6 @@ const Home  = () => {
   // console.log(today);
 
   let today = new Date().toLocaleDateString('fa-IR-u-nu-latn');
-  const { data } = useAuth();
 
   return (
     <div dir='rtl'>
@@ -16,7 +15,6 @@ const Home  = () => {
       <div>
         <div dir='ltr'>
         <div className='p-3'>home page</div>
-        <div className='p-3'>firstname {data?.response?.user?.firstname}</div>
         </div>
       </div>
     </div>
