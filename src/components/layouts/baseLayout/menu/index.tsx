@@ -1,14 +1,14 @@
-import Auth from "./auth";
+import Enter from "./enter";
 import Items from "./items";
 
 const Menu: React.FC = () => {
 
     return (
-        <div className=" bg-white shadow w-full ">
-            <div className="mx-[60px] h-[92px] flex justify-between items-center">
+        <header className=" bg-white shadow w-full ">
+            <div className="mx-[60px] flex justify-between items-center">
                 <div className="flex items-center">
                 <div>
-                    <Auth/>
+                    <Enter/>
                     </div>
                     <div className="flex">
                 <div className="px-3 py-4 cursor-pointer">
@@ -21,11 +21,11 @@ const Menu: React.FC = () => {
                         <Items/>
                     </div>
                     <div className="p-3">
-                        <img className="h-16  rounded" src="/night-learn-logo.png" alt="night learn" />
+                        <img className="max-h-[70px] rounded" src="/night-learn-logo.png" alt="night learn" />
                     </div>
                 </div>
             </div>
-        </div>
+        </header>
     )
 }
 

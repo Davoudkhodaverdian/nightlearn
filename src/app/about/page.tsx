@@ -1,12 +1,8 @@
+import About from "@/components/about";
 
 
-export default function About() {
+export default function AboutPage() {
   return (
-    <main className="flex  flex-col  justify-between p-4">
-      <div>
-      about page
-      </div>
-    
-    </main>
+    <About />
   )
 }

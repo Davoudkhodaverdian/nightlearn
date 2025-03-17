@@ -3,7 +3,7 @@
 // import Cookies from 'universal-cookie';
 import { useAuthUserQuery } from '../api';
 
-// if our cookie be httponly, we cannot access the cookie with javascript and libraries like universal-cookie
+// if our cookie be httponly, we cannot access the cookie with javascript and its libraries like universal-cookie
 const useAuth = () => {
     // const cookie = new Cookies();
     // access cookie without httponly so that we can access cookie with javascript

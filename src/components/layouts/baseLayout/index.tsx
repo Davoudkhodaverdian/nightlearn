@@ -1,15 +1,28 @@
 import Menu from './menu';
 import Footer from './footer';
-import { ReactNode } from 'react';
-import { useLoginUserMutation } from '@/services/api';
+import { ReactNode, useEffect } from 'react';
 
-export default function BaseLayout({children}: {children: ReactNode}) {
-  
+export default function BaseLayout({ children }: { children: ReactNode }) {
+
+  useEffect(() => {
+    window.addEventListener('load', () => {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js', {
+          scope: '/',
+          updateViaCache: 'none',
+        })
+          .then((registration) => console.log('registration is successfully', registration))
+          .catch(err => console.log(err))
+
+      };
+    })
+  }, [])
+
   return (
-    <div className="flex  flex-col  justify-between">
-        <Menu />
+    <>
+      <Menu />
       <main>{children}</main>
       <Footer />
-    </div>
+    </>
   )
 }

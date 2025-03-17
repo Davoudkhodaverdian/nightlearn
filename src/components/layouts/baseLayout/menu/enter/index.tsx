@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const Auth : React.FC = ()=>{
+const Enter : React.FC = ()=>{
 
     return (
         <div>
@@ -12,4 +12,4 @@ const Auth : React.FC = ()=>{
     )
 }
 
-export default Auth;
+export default Enter;

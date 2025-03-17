@@ -1,0 +1,27 @@
+.about {
+    section {
+        padding: 200px;
+        background-color: aquamarine;
+        margin: 300px 0px;
+        animation: fade-in linear forwards;
+        animation-timeline: view();
+        animation-range: 250px 500px;
+        scale: 0.5;
+        opacity: 0.5;
+    }
+
+    @keyframes fade-in {
+
+        to {
+            scale: 1;
+            opacity: 1;
+        }
+    }
+    @keyframes fade-out {
+
+        to {
+            scale: 0.5;
+            opacity: 0.5;
+        }
+    }
+}

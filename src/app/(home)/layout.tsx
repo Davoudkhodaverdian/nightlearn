@@ -12,6 +12,7 @@ export default function RootBaseLayout({
   const router = useRouter()
   const { data, isLoading, error } = useAuth();
   console.log({ data, isLoading, error });
+  console.log("Home layout");
   useEffect(() => {
     if (!isLoading && data) router.push("/user");
   }, [isLoading, error, data]);

@@ -1,4 +1,4 @@
-// import Cookies from 'universal-cookie';
+import Cookies from 'universal-cookie';
 
 
 // storeAuthToken without http only start
@@ -17,7 +17,7 @@
 // storeAuthToken with http only start
 const storeAuthToken = async (token: string) => {
     try {
-        let res = await fetch("/api", {
+        let res = await fetch("/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -32,8 +32,24 @@ const storeAuthToken = async (token: string) => {
 };
 // storeAuthToken with http only end
 
-const removeAuthToken = () => {
+const removeAuthToken = async () => {
+    // without http only
+    // const cookies = new Cookies();
+    // cookies.remove("nightlearn-token");
 
+    // with http only
+    try {
+        let res = await fetch("/api/logout", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        console.log({ res })
+
+    } catch (error) {
+        console.log({ error })
+    }
 }
 
 export { storeAuthToken, removeAuthToken };

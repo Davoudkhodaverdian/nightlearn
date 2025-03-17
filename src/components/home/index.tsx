@@ -1,7 +1,8 @@
 'use client';
-import useAuth from "@/services/useAuth";
 
-const Home  = () => {
+import { useEffect } from "react";
+
+const Home = () => {
 
   // let options = { year: 'numeric', month: 'long', day: 'numeric' };
   // let today = new Date().toLocaleDateString('fa-IR', options);
@@ -14,7 +15,7 @@ const Home  = () => {
       <div className='p-3'> تاریخ امروز {today} - {new Date().toLocaleDateString()}</div>
       <div>
         <div dir='ltr'>
-        <div className='p-3'>home page</div>
+          <div className='p-3'>home page</div>
         </div>
       </div>
     </div>

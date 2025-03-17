@@ -7,8 +7,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:9000/api/',  // mysql
-    // baseUrl: 'http://localhost:27017/api/', // mongodb
+    // baseUrl: 'http://localhost:9000/api/',  // mysql
+    baseUrl: 'http://localhost:27017/api/', // mongodb
     credentials: "include"
   }),
   endpoints: (builder) => ({

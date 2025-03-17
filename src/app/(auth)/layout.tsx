@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import BaseLayout from "@/components/layouts/baseLayout"
 import Loading from "@/components/loading";
 import useAuth from "@/services/useAuth";
