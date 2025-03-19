@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
-import subscriptions from '@/services/server/mongooose/models/subscriptions';
-import dbConnect from '@/services/server/mongooose/dbConnect';
+
+import dbConnect from '@/server/mongooose/dbConnect';
+import subscriptions from '@/server/mongooose/models/subscriptions';
 
 export async function GET() {
   return NextResponse.json({ message: 'save subscription from Next.js API!' });
@@ -10,8 +11,8 @@ export async function POST(req: Request) {
 
   try {
     await dbConnect(); // connect mongoose db
-    const body = await req.json();
-    if (body?.endpoint) {
+    const { endpoint, keys, expirationTime } = await req.json();
+    if (!endpoint || !keys?.auth || !keys?.p256dh) {
       // Not a valid subscription.
       return NextResponse.json({
         error: {
@@ -20,12 +21,21 @@ export async function POST(req: Request) {
         }
       }, { status: 400 });
     }
+    // Check if the subscription already exists
+    const existingSubscription = await subscriptions.findOne({ endpoint });
+    if (existingSubscription) {
+      // If it exists, update the keys
+      existingSubscription.keys = keys;
+      await existingSubscription.save();
+      return NextResponse.json({ message: 'Subscription updated' }, { status: 200 });
+    } else {
+      // If not, create a new subscription
+      const newSubscription = new subscriptions({ endpoint, keys, expirationTime });
+      await newSubscription.save();
+      return NextResponse.json({ message: 'save subscription was successful' }, { status: 201 });
+    }
     
-    let newSubscription = new subscriptions({...body});
 
-    await newSubscription.save();
-
-    return NextResponse.json({ message: 'save subscription was successful' }, { status: 200 });
   } catch (err) {
     return NextResponse.json({
       error: {

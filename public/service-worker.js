@@ -82,6 +82,19 @@ self.addEventListener('notificationclick', (event) => {
 
     event.waitUntil((() => {
         console.log(`notificationClick:`, event);
-        clients.openWindow('/about');
+       // clients.openWindow('/about');
     })())
 })
+
+self.addEventListener('push', function (event) {
+    const data = event.data ? event.data.json()?.notification : {};
+    const title = data.title || 'Notification';
+    const options = {
+        body: data.body || 'Default message',
+        icon: data.icon || '/next.svg',
+    };
+
+    event.waitUntil(
+        self.registration.showNotification(title, options)
+    );
+});

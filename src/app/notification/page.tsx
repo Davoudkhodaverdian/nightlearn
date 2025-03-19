@@ -1,4 +1,4 @@
-import NotificationComponnet from "@/components/notificationComponnet";
+import NotificationComponnet from "@/components/notificationCmp";
 
 
 

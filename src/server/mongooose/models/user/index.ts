@@ -13,7 +13,6 @@ const userSchema = new Schema<IUser>({
 }, { timestamps: true }); // With this option, Mongoose automatically adds createdAt and updatedAt fields
 
 // 3. Create a Model
-const globalAny = global as any;
-globalAny.UserModel = globalAny.UserModel || mongoose.model<IUser>('user', userSchema);
+const users : Model<IUser> = mongoose.models.user || mongoose.model<IUser>('user', userSchema);
 
-export default globalAny.UserModel;
+export default users;

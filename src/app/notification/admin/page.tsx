@@ -1,10 +1,8 @@
-import NotificationComponnet from "@/components/notificationComponnet";
-
-
+import AdminNotification from "@/components/adminNtf";
 
 const NotificationPage = () => {
   return (
-    <NotificationComponnet />
+    <AdminNotification />
   )
 }
 

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import Subscriptions, { ISubscription } from '@/services/server/mongooose/models/subscriptions';
-import dbConnect from '@/services/server/mongooose/dbConnect';
+import Subscriptions, { ISubscription } from '@/server/mongooose/models/subscriptions';
+import dbConnect from '@/server/mongooose/dbConnect';
 
 
 export async function GET() {

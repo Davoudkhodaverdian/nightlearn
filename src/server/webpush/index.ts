@@ -8,7 +8,7 @@ const webPushVAPIDKeys = {
     privateKey: '9xXVX-adTNaKfG9khc0U8rDfrmEhhbcSZVq9NOuB1zE',
 }
 webpush.setVapidDetails(
-    'textone@gmail.com',
+    'mailto:textone@gmail.com',
     webPushVAPIDKeys.publicKey,
     webPushVAPIDKeys.privateKey
 );
