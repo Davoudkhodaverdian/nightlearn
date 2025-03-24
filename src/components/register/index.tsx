@@ -7,15 +7,16 @@ import { SignupSchema } from './signupSchema';
 import { SignupError } from './models/signupError';
 import Data from './data.json';
 import Link from 'next/link';
-import { useRegisterUserMutation } from '@/services/api';
+import { useRegisterUserMutation } from '@/services/store/authApi';
 import { storeAuthToken } from '@/services/cookie';
 import { useRouter } from 'next/navigation'
 
 const Register: React.FC = () => {
-  const initialValues: Signup = { firstName: '', lastName: '', email: '', phoneNumber: '', password: '' };
+  const initialValues: Signup = { firstName: '', lastName: '', email: '', phoneNumber: '', password: '', admin: false };
   const [registerUser, { isLoading }] = useRegisterUserMutation();
   const router = useRouter();
   const getAuthUser = async (values: Signup, formikHelpers: FormikHelpers<Signup>) => {
+    console.log({values})
     try {
       // fetch with rtk query
       const data = await registerUser(values).unwrap();
@@ -40,9 +41,9 @@ const Register: React.FC = () => {
       }
     }
   }
-  
+
   return (
-    <div dir='rtl' className="p-12 ">
+    <div className="p-12 ">
       <div className='text-xl p-3' >ثبت نام</div>
       <Formik
         initialValues={initialValues}
@@ -57,9 +58,7 @@ const Register: React.FC = () => {
           <RegisterForm loading={isLoading} errors={errors} touched={touched} />
         )}
       </Formik>
-      <div className='p-3'>
-        <Link href={'/login'}>وارد شوید</Link>
-      </div>
+        <p className='p-3'>قبلا ثبت نام کرده اید <Link className='text-[#2e2798]' href={'/login'}>وارد شوید</Link></p>
     </div>
   )
 }

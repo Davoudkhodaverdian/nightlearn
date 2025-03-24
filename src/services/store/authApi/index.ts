@@ -1,16 +1,18 @@
 // Need to use the React-specific entry point to allow generating React hooks
-import { Signin } from '@/components/login/models/signin'
-import { Signup } from '@/components/register/models/signup'
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-
+import { Signin } from '@/components/login/models/signin';
+import { Signup } from '@/components/register/models/signup';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 // Define a service using a base URL and expected endpoints
+
+
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     // baseUrl: 'http://localhost:9000/api/',  // mysql
-    baseUrl: 'http://localhost:27017/api/', // mongodb
+    baseUrl: 'http://localhost:9000/api/', // mongodb
     credentials: "include"
   }),
+  tagTypes: ['User'],
   endpoints: (builder) => ({
     loginUser: builder.mutation({
       query: (body: Signin) => {
@@ -20,6 +22,7 @@ export const authApi = createApi({
           body
         }
       },
+
     }),
     registerUser: builder.mutation({
       query: (body: Signup) => {
@@ -38,6 +41,8 @@ export const authApi = createApi({
           // headers: { authorization: token } // send token for backend when httponly is not active
         }
       },
+      providesTags: ['User'],
+
     }),
   }),
 })

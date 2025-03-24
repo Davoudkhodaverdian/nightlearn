@@ -7,10 +7,10 @@ const requestPermission = async () => {
         if (result === "granted") {
             // new Notification("Hi there!", {});
             // or
-            navigator.serviceWorker.ready.then(registeration => {
-                registeration.showNotification("Hi there!", {
+            navigator.serviceWorker.ready.then(registration => {
+                registration.showNotification("Hi there!", {
                     body: "this is a simple text",
-                    // icon:"/night-learn-logo.png",
+                    icon:"/night-learn-logo.png",
 
                 } as NotificationOptions)
             })

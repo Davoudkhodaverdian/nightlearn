@@ -1,16 +1,12 @@
-import { authApi } from "@/services/api"
-import useAuth from "@/services/useAuth"
+"use client";
 
 export default function Panel() {
-    
-   
-    return (
+
   
-      <div className="flex  flex-col  justify-between p-4">
-        <div>
-        Panel page
-        </div>
-      </div>
-    )
-  }
-  
+  return (
+
+    <div className="">
+      <h2 className="p-3">صفحه ادمین</h2>
+    </div>
+  )
+}

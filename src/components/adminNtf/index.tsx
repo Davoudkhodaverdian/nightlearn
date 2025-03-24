@@ -65,7 +65,7 @@ const adminNtf: React.FC = () => {
             <div className="">
                 {
                     subscriptions?.map(subscription => (
-                        <div className="" key={subscription?.id}>endpoint: {subscription?.endpoint}</div>
+                        <div className="break-all p-3 border ml-1 mr-1" key={subscription?.id}>endpoint: {subscription?.endpoint}</div>
                     ))
                 }
             </div>

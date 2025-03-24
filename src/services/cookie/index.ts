@@ -39,16 +39,17 @@ const removeAuthToken = async () => {
 
     // with http only
     try {
-        let res = await fetch("/api/logout", {
+        let result = await fetch("/api/logout", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             }
         });
-        console.log({ res })
-
+        const response = await result.json();
+        return response;
     } catch (error) {
         console.log({ error })
+        return error;
     }
 }
 

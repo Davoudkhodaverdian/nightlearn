@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { LoginError } from './models/signinError';
 import Data from './data.json';
 
-import { useLoginUserMutation } from '@/services/api';
+import { useLoginUserMutation } from '@/services/store/authApi';
 import { storeAuthToken } from '@/services/cookie';
 import { useRouter } from 'next/navigation'
 
@@ -43,8 +43,8 @@ const Login: React.FC = () => {
     }
   }
   return (
-    <div dir='rtl' className="p-12 ">
-      <div className='text-xl p-3'>ورود</div>
+    <div  className="p-12 ">
+      <h2 className='text-xl p-3'>ورود</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={LoginSchema}
@@ -56,12 +56,9 @@ const Login: React.FC = () => {
       >
         {({ errors, touched }) => (
           <LoginForm loading={isLoading} errors={errors} touched={touched} />
-          // <LoginForm loading={loading} errors={errors} touched={touched} />
         )}
       </Formik>
-      <div className='p-3' >
-        <Link href={'/register'}>ثبت نام کنید</Link>
-      </div>
+      <p className='p-3'>هنوز ثبت نام نکرده اید <Link className='text-[#2e2798]' href={'/register'}>ثبت نام کنید</Link></p>
     </div>
   )
 }

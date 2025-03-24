@@ -55,7 +55,7 @@ const Login: React.FC = () => {
         }
     }
     return (
-        <div dir='rtl' className="p-12 ">
+        <div className="p-12 ">
             <div className='text-xl p-3'>ورود</div>
             <Formik
                 initialValues={initialValues}

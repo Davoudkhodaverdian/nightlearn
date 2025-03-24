@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
 
   try {
-    const cookieStore = await cookies();
+    const cookieStore = cookies();
     // cookieStore.set('name', token) // or // cookies().set('name', token, { secure: true }) 
     // or
     cookieStore.set({
@@ -15,9 +15,9 @@ export async function POST(request: Request) {
       path: '/',
       maxAge: 0, // remove token
     });
-    return NextResponse.json({ message: "User is authenticated" }, { status: 200 });
+    return NextResponse.json({ message: "User must be logout", code: 200 }, { status: 200 });
 
   } catch (error) {
-    return NextResponse.json({ error }, { status: 405 });
+    return NextResponse.json({ error, code: 405 }, { status: 405 });
   }
 }

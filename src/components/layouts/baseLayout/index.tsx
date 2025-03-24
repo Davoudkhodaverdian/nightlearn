@@ -5,17 +5,17 @@ import { ReactNode, useEffect } from 'react';
 export default function BaseLayout({ children }: { children: ReactNode }) {
 
   useEffect(() => {
-    window.addEventListener('load', () => {
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/service-worker.js', {
-          scope: '/',
-          updateViaCache: 'none',
-        })
-          .then((registration) => console.log('registration is successfully', registration))
-          .catch(err => console.log(err))
 
-      };
-    })
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js', {
+        scope: '/',
+        updateViaCache: 'none',
+      })
+        .then((registration) => console.log('registration is successfully', registration))
+        .catch(err => console.log(err))
+
+    };
+
   }, [])
 
   return (

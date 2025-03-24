@@ -1,32 +1,20 @@
-'use client'
-import PanelLayout from '@/components/layouts/panelLayout'
-import Loading from '@/components/loading';
-import useAuth from '@/services/useAuth';
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react';
+"use client"
+
+import PrivateLayout from '@/components/layouts/privateLayout';
+import { Provider } from 'react-redux'
+import { store } from '@/services/store'
 
 export default function RootBaseLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const router = useRouter()
-  const { data, isLoading, error } = useAuth();
-  console.log({ data, isLoading, error });
 
-  useEffect(() => {
-    if (!isLoading && (!data || error)) router.push("/");
-  }, [isLoading, error, data]);
-
-  if (!isLoading && (!data || error)) return <></>;
   return (
-    <div>
-      <div className={!isLoading ? 'hidden' : 'flex justify-center items-center h-[100vh]'}>
-        <div><Loading dimention={'40px'} /></div>
-      </div>
-      <div className={isLoading ? 'hidden' : ''}>
-        <PanelLayout>{children}</PanelLayout>
-      </div>
-    </div>
+    <Provider store={store}>
+      <PrivateLayout>
+        {children}
+      </PrivateLayout>
+    </Provider>
   )
 }
