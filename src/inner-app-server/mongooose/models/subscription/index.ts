@@ -5,17 +5,17 @@ export interface ISubscription extends Document {
     endpoint: string;
     expirationTime: Date;
     keys: Object
-    createdAt: Date;
-    updatedAt: Date;
+    created_at: Date;
+    updated_at: Date;
 }
 // 2. Create a Schema corresponding to the interface
 const subscriptionSchema = new Schema<ISubscription>({
     endpoint: { type: String, required: true, unique: true },
     expirationTime: { type: Date, default: null },
     keys: { type: Object, required: true }
-}, { timestamps: true }); // With this option, Mongoose automatically adds createdAt and updatedAt fields
+}, { timestamps: true }); // With this option, Mongoose automatically adds created_at and updated_at fields
 
 // 3. Create a Model
-const Subscriptions: Model<ISubscription> = mongoose.models.subscription || mongoose.model<ISubscription>('subscription', subscriptionSchema);
+const Subscription: Model<ISubscription> = mongoose.models.subscription || mongoose.model<ISubscription>('subscription', subscriptionSchema);
 
-export default Subscriptions;
+export default Subscription;

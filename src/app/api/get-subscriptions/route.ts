@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
-import Subscriptions, { ISubscription } from '@/server/mongooose/models/subscriptions';
-import dbConnect from '@/server/mongooose/dbConnect';
+import Subscription, { ISubscription } from '@/inner-app-server/mongooose/models/subscription';
+import connectToDatabase from '@/inner-app-server/mongooose/connectToDatabase';
 
 
 export async function GET() {
   try {
-    await dbConnect(); // connect mongoose db
-    const subscriptions = await Subscriptions.find({});
+    await connectToDatabase(); // connect mongoose db
+    const subscriptions = await Subscription.find({});
     const reducedSubscriptions = subscriptions.map((subscription : ISubscription) => {
       return {
         id: subscription._id,

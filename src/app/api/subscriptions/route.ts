@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
-import Subscriptions from '@/server/mongooose/models/subscriptions';
-import dbConnect from '@/server/mongooose/dbConnect';
+import Subscription from '@/inner-app-server/mongooose/models/subscription';
+import connectToDatabase from '@/inner-app-server/mongooose/connectToDatabase';
 
 export async function GET() {
-  await dbConnect(); // connect mongoose db
-  const subscriptions = await Subscriptions.find({});
+  await connectToDatabase(); // connect mongoose db
+  const subscriptions = await Subscription.find({});
   return NextResponse.json(subscriptions);
 }

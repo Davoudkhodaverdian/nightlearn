@@ -3,14 +3,14 @@ import { useEffect, useRef, useState } from "react";
 import getSubscriptionList from "./getSubscriptionList";
 import enableSendingPushes from "./enableSendingPushes";
 
-interface ISubscriptions {
+interface ISubscription {
     endpoint: string
     id: string
 }
 // Admin Notification Component
 const adminNtf: React.FC = () => {
 
-    const [subscriptions, setSubscriptions] = useState<ISubscriptions[]>([]);
+    const [subscriptions, setSubscriptions] = useState<ISubscription[]>([]);
     const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
     const [text, setText] = useState<string>(
         `

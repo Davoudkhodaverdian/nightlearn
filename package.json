@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "server": "nodemon",
+    "start:all": "concurrently \"npm run dev\" \"npm run server\""
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -17,9 +19,12 @@
     "@types/react": "18.2.18",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
+    "bcrypt": "^5.1.1",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.13",
+    "express-validator": "^7.2.1",
     "formik": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.10.0",
     "next": "13.4.13",
     "postcss": "8.4.27",
@@ -34,11 +39,17 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.9",
     "@types/mongoose": "^5.11.96",
     "@types/web-push": "^3.6.4",
+    "concurrently": "^9.1.2",
     "cors": "^2.8.5",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3"
   }
 }
