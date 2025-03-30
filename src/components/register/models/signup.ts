@@ -1,8 +1,8 @@
 export interface Signup {
-    firstName: string;
-    lastName: string;
+    firstname: string;
+    lastname: string;
     email: string;
-    phoneNumber: string;
+    phonenumber: string;
     password:string;
     admin: boolean
   }

@@ -39,15 +39,15 @@ const LoginForm: React.FC<Props> = ({ errors, touched, loading }) => {
                 </div>
             </div>
             {/* <div>
-    <label className='pl-3' htmlFor="phoneNumber">شماره موبایل</label>
+    <label className='pl-3' htmlFor="phonenumber">شماره موبایل</label>
     <Field
     maxLength="11"
-    id="phoneNumber"
-    name="phoneNumber"
+    id="phonenumber"
+    name="phonenumber"
     placeholder="شماره موبایل"
  type="tel"
   />
-  {errors.phoneNumber && touched.phoneNumber && <div className='text-red-600 p-2'>{errors.phoneNumber}</div>}
+  {errors.phonenumber && touched.phonenumber && <div className='text-red-600 p-2'>{errors.phonenumber}</div>}
         </div> */}
             <div className="flex flex-row-reverse justify-end">
                 <button disabled={loading} className={`p-3 text-white rounded bg-[#0c056d] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-70`}

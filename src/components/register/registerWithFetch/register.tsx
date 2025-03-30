@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation'
 import { storeAuthToken } from '@/services/cookie';
 
 const Register: React.FC = () => {
-  const initialValues: Signup = { firstName: '', lastName: '', email: '', phoneNumber: '', password: '',admin: false };
+  const initialValues: Signup = { firstname: '', lastname: '', email: '', phonenumber: '', password: '',admin: false };
   const [loading, setLoading] = useState(false); // for using fetch function
   const router = useRouter();
   const getAuthUser = async (values: Signup, formikHelpers: FormikHelpers<Signup>) => {

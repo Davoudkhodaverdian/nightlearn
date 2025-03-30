@@ -30,7 +30,7 @@ function PrivateLayout({ children }: { children: ReactNode }) {
       }
 
     }
-  }, [isAuthenticated, isLoading]);
+  }, [isLoading]);
 
   if (isLoading) {
     return <div className={'flex justify-center items-center h-[100vh]'}><Loading dimention={'40px'} /></div>

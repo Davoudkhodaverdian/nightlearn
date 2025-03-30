@@ -13,14 +13,14 @@ const RegisterForm: React.FC<Props> = ({ errors, touched, loading }) => {
         <Form>
             <div className='flex gap-2'>
                 <div className='p-1'>
-                    <label className='p-1 pb-3 block' htmlFor="firstName">نام</label>
-                    <Field className="shadow border-[#9681ff] border-[1px] border-solid p-[10px] rounded-[5px]" id="firstName" name="firstName" placeholder="نام" />
-                    {errors.firstName && touched.firstName && <div className='text-red-600 p-2'>{errors.firstName}</div>}
+                    <label className='p-1 pb-3 block' htmlFor="firstname">نام</label>
+                    <Field className="shadow border-[#9681ff] border-[1px] border-solid p-[10px] rounded-[5px]" id="firstname" name="firstname" placeholder="نام" />
+                    {errors.firstname && touched.firstname && <div className='text-red-600 p-2'>{errors.firstname}</div>}
                 </div>
                 <div className='p-1'>
-                    <label className='p-1 pb-3 block' htmlFor="lastName">نام خانوادگی</label>
-                    <Field className="shadow border-[#9681ff] border-[1px] border-solid p-[10px] rounded-[5px]" id="lastName" name="lastName" placeholder="نام خانوادگی" />
-                    {errors.lastName && touched.lastName && <div className='text-red-600 p-2'>{errors.lastName}</div>}
+                    <label className='p-1 pb-3 block' htmlFor="lastname">نام خانوادگی</label>
+                    <Field className="shadow border-[#9681ff] border-[1px] border-solid p-[10px] rounded-[5px]" id="lastname" name="lastname" placeholder="نام خانوادگی" />
+                    {errors.lastname && touched.lastname && <div className='text-red-600 p-2'>{errors.lastname}</div>}
                 </div>
             </div>
             <div className='flex gap-2'>
@@ -43,15 +43,15 @@ const RegisterForm: React.FC<Props> = ({ errors, touched, loading }) => {
             </div>
 
             {/* <div>
-    <label className='pl-3' htmlFor="phoneNumber">شماره موبایل</label>
+    <label className='pl-3' htmlFor="phonenumber">شماره موبایل</label>
     <Field
     maxLength="11"
-    id="phoneNumber"
-    name="phoneNumber"
+    id="phonenumber"
+    name="phonenumber"
     placeholder="شماره موبایل"
  type="tel"
   />
-  {errors.phoneNumber && touched.phoneNumber && <div className='text-red-600 p-2'>{errors.phoneNumber}</div>}
+  {errors.phonenumber && touched.phonenumber && <div className='text-red-600 p-2'>{errors.phonenumber}</div>}
         </div> */}
 
             <div className='p-1'>

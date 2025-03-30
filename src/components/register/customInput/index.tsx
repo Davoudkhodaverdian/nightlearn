@@ -7,7 +7,7 @@ const CustomInput: React.FC<Props> = ({name,}) => {
 
     return (
         <div>
-            {/* <label className='pl-3' htmlFor="firstName">{}</label>
+            {/* <label className='pl-3' htmlFor="firstname">{}</label>
             <input
                 type="email"
                 name="email"

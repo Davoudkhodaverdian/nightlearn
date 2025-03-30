@@ -12,6 +12,7 @@ export interface IUser extends Document {
   comments: Schema.Types.ObjectId[];
   created_at: Date;
   updated_at: Date;
+  comparePassword(password: string): Promise<boolean>; // تعریف متد
 }
 // 2. Create a Schema corresponding to the interface
 const userSchema = new Schema<IUser>({
@@ -39,6 +40,10 @@ userSchema.pre("save", async function (next) {
     next(error as Error);
   }
 });
+// Method to compare passwords
+userSchema.methods.comparePassword = async function (password: string): Promise<boolean> {
+  return bcrypt.compare(password, this.password);
+};
 // 3. Create a Model
 const User: Model<IUser> = mongoose.models.user || mongoose.model<IUser>('user', userSchema);
 

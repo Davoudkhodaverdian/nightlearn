@@ -13,7 +13,7 @@ import Data from './../data.json';
 const Login: React.FC = () => {
 
     const [loading, setLoading] = useState(false);
-    const initialValues: Signin = { email: '', phoneNumber: '', password: '' };
+    const initialValues: Signin = { email: '', phonenumber: '', password: '' };
     console.log("Login")
 
     const getAuthUser = async (values: Signin, formikHelpers: FormikHelpers<Signin>) => {

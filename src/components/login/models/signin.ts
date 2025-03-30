@@ -1,5 +1,5 @@
 export interface Signin {
     email: string;
-    phoneNumber: string;
+    phonenumber: string;
     password:string;
   }

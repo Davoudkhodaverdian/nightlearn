@@ -5,9 +5,9 @@ export const LoginSchema = Yup.object().shape({
     email: Yup.string()
     .email(Data.find(i=>i.name==='email')?.errors.email)
     .required(Data.find(i=>i.name==='email')?.errors.required),
-    // phoneNumber: Yup.string()
-    // .required(Data.find(i=>i.name==='phoneNumber')?.errors.required)
-    // .matches(phoneRegExp, Data.find(i=>i.name==='phoneNumber')?.errors.phoneNumber),
+    // phonenumber: Yup.string()
+    // .required(Data.find(i=>i.name==='phonenumber')?.errors.required)
+    // .matches(phoneRegExp, Data.find(i=>i.name==='phonenumber')?.errors.phonenumber),
     password: Yup.string()
     .min(5, Data.find(i=>i.name==='password')?.errors.min)
     .required(Data.find(i=>i.name==='password')?.errors.required),

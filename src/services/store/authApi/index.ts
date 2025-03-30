@@ -9,7 +9,8 @@ export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     // baseUrl: 'http://localhost:9000/api/',  // mysql
-    baseUrl: 'http://localhost:9000/api/', // mongodb
+    // baseUrl: 'http://localhost:9000/api/', // mongodb
+    baseUrl: 'http://localhost:3000/api/', // inner app server nextjs
     credentials: "include"
   }),
   tagTypes: ['User'],
@@ -36,7 +37,7 @@ export const authApi = createApi({
     authUser: builder.query({
       query: (token: string) => {
         return {
-          url: "user",
+          url: "auth/user",
           method: "GET",
           // headers: { authorization: token } // send token for backend when httponly is not active
         }

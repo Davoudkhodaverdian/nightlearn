@@ -1,13 +1,13 @@
 [
     {
-        "name": "firstName",
+        "name": "firstname",
         "errors": {
             "min":"نام بیش از حد کوتاه است",
             "required":"نام الزامی است"
         }
     },
     {
-        "name": "lastName",
+        "name": "lastname",
         "errors": {
             "min":"نام خانوادگی بیش از حد کوتاه است",
             "required":"نام خانوادگی الزامی است"
@@ -21,9 +21,9 @@
         }
     },
     {
-        "name": "phoneNumber",
+        "name": "phonenumber",
         "errors": {
-            "phoneNumber":"شماره موبایل وارد شده نامعتبر است",
+            "phonenumber":"شماره موبایل وارد شده نامعتبر است",
             "required":"شماره موبایل الزامی است"
         }
     },

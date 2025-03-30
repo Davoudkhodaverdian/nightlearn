@@ -12,7 +12,7 @@ const useAuth = () => {
 
     // access cookie with httponly so that we cannot access cookie with javascript and it does in backend and we access the cookie in the backend
     const { data, isLoading, error, refetch } = useAuthUserQuery('');
-    if (data || error) console.log({ data })
+    console.log({ data })
     return { data, isLoading, error, refetch, isAuthenticated: !!data, }
 }
 export default useAuth;

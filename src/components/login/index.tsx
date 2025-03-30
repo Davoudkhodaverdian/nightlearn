@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation'
 
 
 const Login: React.FC = () => {
-  const initialValues: Signin = { email: '', phoneNumber: '', password: '' };
+  const initialValues: Signin = { email: '', phonenumber: '', password: '' };
   const [loginUser, { isLoading }] = useLoginUserMutation();
   const router = useRouter();
   const getAuthUser = async (values: Signin, formikHelpers: FormikHelpers<Signin>) => {
