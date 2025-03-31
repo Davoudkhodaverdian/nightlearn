@@ -4,7 +4,6 @@ const enRegExp = /^[a-zA-Z0-9]+$/; // Validation for English Letters and Numbers
 export const CourseSchema = Yup.object().shape({
     title: Yup.string()
         .min(2, Data?.find(i => i.name === 'title')?.errors?.min)
-        .max(2, Data?.find(i => i.name === 'title')?.errors?.max)
         .required(Data.find(i => i.name === 'title')?.errors.required),
     name: Yup.string()
         .min(2, Data.find(i => i.name === 'name')?.errors.min)

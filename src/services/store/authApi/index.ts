@@ -42,6 +42,13 @@ export const authApi = createApi({
           // headers: { authorization: token } // send token for backend when httponly is not active
         }
       },
+      async onQueryStarted(arg, { queryFulfilled }) {
+        try {
+          await queryFulfilled; // Waiting for the request to complete
+        } catch (error) {
+          console.log(error);
+        }
+      },
       providesTags: ['User'],
 
     }),

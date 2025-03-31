@@ -32,6 +32,20 @@ function PrivateLayout({ children }: { children: ReactNode }) {
     }
   }, [isLoading]);
 
+  React.useEffect(() => {
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js', {
+        scope: '/',
+        updateViaCache: 'none',
+      })
+        .then((registration) => console.log('registration is successfully', registration))
+        .catch(err => console.log(err))
+
+    };
+
+  }, []);
+  
   if (isLoading) {
     return <div className={'flex justify-center items-center h-[100vh]'}><Loading dimention={'40px'} /></div>
   }

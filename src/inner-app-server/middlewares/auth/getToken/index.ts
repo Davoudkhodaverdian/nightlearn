@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 
-const getAuthorization = (req: NextRequest) => {
+const getToken = (req: NextRequest) => {
     try {
         const token_name = 'nightlearn-token'
         const query_token = req.nextUrl.searchParams.get(token_name)
@@ -15,4 +15,4 @@ const getAuthorization = (req: NextRequest) => {
         throw error;
     }
 }
-export default getAuthorization;
+export default getToken;

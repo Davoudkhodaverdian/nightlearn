@@ -12,7 +12,7 @@ export interface IUser extends Document {
   comments: Schema.Types.ObjectId[];
   created_at: Date;
   updated_at: Date;
-  comparePassword(password: string): Promise<boolean>; // تعریف متد
+  comparePassword(password: string): Promise<boolean>; // Method definition
 }
 // 2. Create a Schema corresponding to the interface
 const userSchema = new Schema<IUser>({
