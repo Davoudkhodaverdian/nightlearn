@@ -8,5 +8,6 @@ export const metadata: Metadata = {
 
 export default function CoursesPage() {
 
+
   return <Courses />;
 }

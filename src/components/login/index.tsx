@@ -5,12 +5,12 @@ import { Signin } from './models/signin';
 import { LoginSchema } from './loginSchema';
 import LoginForm from './form';
 import Link from 'next/link';
-import { LoginError } from './models/signinError';
-import Data from './data.json';
-
+import fieldData from './data.json';
 import { useLoginUserMutation } from '@/services/store/authApi';
 import { storeAuthToken } from '@/services/cookie';
 import { useRouter } from 'next/navigation'
+import getValidationErrorFields from '@/services/getValidationErrorFields';
+
 
 
 const Login: React.FC = () => {
@@ -27,13 +27,11 @@ const Login: React.FC = () => {
         await storeAuthToken(data?.response?.data?.token);
         router.push("/user");
       }
-    } catch (error:any) {
+    } catch (error: any) {
       console.log(error);
       if (error?.data?.errors) {
-        error?.data?.errors?.map((item: LoginError) => {
-          const field = Data.find(i => i?.name === item?.path) ? item?.path : "password";
-          formikHelpers.setFieldError(field, item?.message)
-        })
+        const errors = getValidationErrorFields(error?.data?.errors, fieldData);
+        errors.map(({ name, value }) => { formikHelpers.setFieldError(name, value); });
       } else if (error?.data?.error) {
         alert(error?.data?.error?.message);
       } else {
@@ -43,7 +41,7 @@ const Login: React.FC = () => {
     }
   }
   return (
-    <div  className="p-12 ">
+    <div className="p-12 ">
       <h2 className='text-xl p-3'>ورود</h2>
       <Formik
         initialValues={initialValues}

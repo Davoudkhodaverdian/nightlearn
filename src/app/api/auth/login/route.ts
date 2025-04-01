@@ -2,20 +2,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectToDatabase from "@/inner-app-server/mongooose/connectToDatabase";
 import User, { IUser } from "@/inner-app-server/mongooose/models/user";
-import { createToken, customValidationResult, requiredUserData, transform } from "@/inner-app-server/auth/functions";
+import { createToken, transform } from "@/inner-app-server/fundamental";
 import { validators } from "@/inner-app-server/auth/login";
+import { requiredUserData } from "@/inner-app-server/auth";
+import { validateRequest } from "@/inner-app-server/middlewares/validateRequest";
+import { corsMiddleware } from "../../middleware/cors";
 
 export async function POST(req: NextRequest) {
     try {
+        const corsResponse = corsMiddleware(req);
+        if (corsResponse.status === 403) return corsResponse;
         await connectToDatabase();
         const { email, password } = await req.json();
 
-        // Check validation and make custom validationResult (change msg to message) with express-validator
-        await Promise.all(validators.map((rule) => rule.run({ body: { email, password } })));
-        const errors = customValidationResult({ body: { email, password } });
-        if (!errors.isEmpty()) {
-            return NextResponse.json({ errors: errors.array(), status: 400 }, { status: 400 });
-        }
+        // Execute validation middleware
+        const validationResponse = await validateRequest<Partial<IUser>>({ body: { email, password } }, validators);
+        if (validationResponse) return validationResponse;
+
         // Check the email is already registered or not
         const user = await User.findOne({ email });
         if (!user) {

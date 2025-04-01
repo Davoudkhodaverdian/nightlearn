@@ -10,8 +10,8 @@ export interface IUser extends Document {
   password: string;
   admin: boolean;
   comments: Schema.Types.ObjectId[];
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
   comparePassword(password: string): Promise<boolean>; // Method definition
 }
 // 2. Create a Schema corresponding to the interface
@@ -23,7 +23,7 @@ const userSchema = new Schema<IUser>({
   password: { type: String, required: true },
   admin: { type: Boolean, default: false },
   comments: [{ type: Schema.Types.ObjectId, ref: 'course' }]
-}, { timestamps: true }); // With this option, Mongoose automatically adds created_at and updated_at fields
+}, { timestamps: true }); // With this option, Mongoose automatically adds createdAt and updatedAt fields
 
 // pre middleware for hashing the password before save
 userSchema.pre("save", async function (next) {

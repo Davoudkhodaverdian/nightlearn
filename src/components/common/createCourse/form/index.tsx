@@ -18,26 +18,26 @@ const CourseForm: React.FC<Props> = ({ errors, touched, loading, handleClose, ha
         <Form>
             <div className='flex gap-2'>
                 <div className='p-1 w-full'>
-                    <label className='p-1 pb-3 block' htmlFor="title">نام دوره آموزشی</label>
+                    <label className='p-1 pb-3 block' htmlFor="name">نام دوره آموزشی</label>
                     <Field
-                        id="title"
-                        name="title"
+                        id="name"
+                        name="name"
                         placeholder="نام دوره آموزشی"
                         type="text"
                         className="shadow border-[#9681ff] w-full border-[1px] border-solid p-[10px] rounded-[5px]"
                     />
-                    {errors.title && touched.title && <div className='text-red-600 p-2'>{errors.title}</div>}
+                    {errors.name && touched.name && <div className='text-red-600 p-2'>{errors.name}</div>}
                 </div>
                 <div className='p-1 w-full'>
-                    <label className='p-1 pb-3 block' htmlFor="name">عنوان انگلیسی دوره آموزشی</label>
+                    <label className='p-1 pb-3 block' htmlFor="title">عنوان دوره آموزشی</label>
                     <Field
-                        id="name"
-                        name="name"
-                        placeholder="عنوان انگلیسی دوره آموزشی"
+                        id="title"
+                        name="title"
+                        placeholder="عنوان دوره آموزشی"
                         type="text"
                         className="shadow border-[#9681ff] w-full border-[1px] border-solid p-[10px] rounded-[5px]"
                     />
-                    {errors.name && touched.name && <div className='text-red-600 p-2'>{errors.name}</div>}
+                    {errors.title && touched.title && <div className='text-red-600 p-2'>{errors.title}</div>}
                 </div>
             </div>
             <div className='p-1 w-full'>

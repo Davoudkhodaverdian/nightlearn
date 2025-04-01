@@ -1,9 +1,5 @@
 import { validationResult } from "express-validator";
 import jwt from 'jsonwebtoken';
-import { IUser } from "../../mongooose/models/user";
-const requiredUserData: (keyof IUser)[] = [
-    'firstname', 'lastname', 'email', "phonenumber", "admin", "created_at", "updated_at"
-]
 // make custom validationResult, change msg to message
 const customValidationResult = validationResult.withDefaults({
     formatter: error => {
@@ -26,4 +22,4 @@ const createToken = (id: string) => {
     let token = jwt.sign({ user_id: id }, process.env.JWT_SECRET as string);
     return token;
 }
-export { customValidationResult, transform, createToken, requiredUserData };
+export { customValidationResult, transform, createToken };

@@ -2,10 +2,11 @@
 import React, { useEffect, useRef } from "react";
 import Table from "./table";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import data from './courses.json';
+import courseData from './courses.json';
 import PaginationCmp from "./paginationCmp";
 import AddCourses from "./add";
 import { ICourseData } from "../../models";
+import { useGetCoursesQuery } from "@/services/store/courseApi";
 
 const Courses: React.FC = () => {
   const pathname = usePathname();
@@ -14,9 +15,9 @@ const Courses: React.FC = () => {
   const page = parseInt(searchParams.get("page") || "1");
   const rowsPerPage = parseInt(searchParams.get("rows-per-page") || "2");
   const pageTopRef = useRef<HTMLDivElement>(null);
-  const paginatedData = data.slice((page - 1) * rowsPerPage, page * rowsPerPage) as ICourseData[];
-  const countPage = Math.ceil(data.length / rowsPerPage);
-  
+  const paginatedData = courseData.slice((page - 1) * rowsPerPage, page * rowsPerPage) as ICourseData[];
+  const countPage = Math.ceil(courseData.length / rowsPerPage);
+
   useEffect(() => {
     if (paginatedData.length === 0) {
       const params = new URLSearchParams(searchParams.toString());
@@ -24,7 +25,13 @@ const Courses: React.FC = () => {
       params.set('rows-per-page', "2");
       router.push(pathname + '?' + params, { scroll: false });
     }
-  }, [])
+  }, []);
+
+
+  const { data, isLoading, error } = useGetCoursesQuery('');
+  useEffect(() => {
+    if (!isLoading) console.log('GetCourses', { data, error })
+  }, [isLoading])
 
   return (
     <>

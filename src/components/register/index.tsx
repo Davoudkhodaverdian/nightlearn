@@ -4,19 +4,19 @@ import { Formik, FormikHelpers } from 'formik';
 import RegisterForm from './form';
 import { Signup } from './models/signup';
 import { SignupSchema } from './signupSchema';
-import { SignupError } from './models/signupError';
-import Data from './data.json';
+import fieldData from './data.json';
 import Link from 'next/link';
 import { useRegisterUserMutation } from '@/services/store/authApi';
 import { storeAuthToken } from '@/services/cookie';
 import { useRouter } from 'next/navigation'
+import getValidationErrorFields from '@/services/getValidationErrorFields';
 
 const Register: React.FC = () => {
   const initialValues: Signup = { firstname: '', lastname: '', email: '', phonenumber: '', password: '', admin: false };
   const [registerUser, { isLoading }] = useRegisterUserMutation();
   const router = useRouter();
   const getAuthUser = async (values: Signup, formikHelpers: FormikHelpers<Signup>) => {
-    console.log({values})
+    console.log({ values })
     try {
       // fetch with rtk query
       const data = await registerUser(values).unwrap();
@@ -29,10 +29,8 @@ const Register: React.FC = () => {
     } catch (error: any) {
       console.log(error);
       if (error?.data?.errors) {
-        error?.data?.errors?.map((item: SignupError) => {
-          const field = Data.find(i => i?.name === item?.path) ? item?.path : "password";
-          formikHelpers.setFieldError(field, item?.message)
-        })
+        const errors = getValidationErrorFields(error?.data?.errors, fieldData);
+        errors.map(({ name, value }) => { formikHelpers.setFieldError(name, value); });
       } else if (error?.data?.error) {
         alert(error?.data?.error?.message);
       } else {
@@ -58,7 +56,7 @@ const Register: React.FC = () => {
           <RegisterForm loading={isLoading} errors={errors} touched={touched} />
         )}
       </Formik>
-        <p className='p-3'>قبلا ثبت نام کرده اید <Link className='text-[#2e2798]' href={'/login'}>وارد شوید</Link></p>
+      <p className='p-3'>قبلا ثبت نام کرده اید <Link className='text-[#2e2798]' href={'/login'}>وارد شوید</Link></p>
     </div>
   )
 }

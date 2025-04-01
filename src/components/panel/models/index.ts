@@ -10,8 +10,8 @@ export interface ICourseData {
     type: "online" | "offline"
 }
 export interface Course {
-    title: string
     name: string
+    title: string
     description: string
     type: "online" | "offline"
     price: string
