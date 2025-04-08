@@ -7,12 +7,12 @@ export interface ICourseData {
     id: number
     title: string
     name: string
-    type: "online" | "offline"
+    category: string
 }
 export interface Course {
     name: string
     title: string
     description: string
-    type: "online" | "offline"
+    category: string
     price: string
 }

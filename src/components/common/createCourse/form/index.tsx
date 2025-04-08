@@ -54,11 +54,11 @@ const CourseForm: React.FC<Props> = ({ errors, touched, loading, handleClose, ha
             </div>
             <div className='flex gap-2'>
                 <div className={`p-1 w-full relative ${styles.select_part}`}>
-                    <label className='p-1 pb-3 block' htmlFor="type">نوع دوره آموزشی</label>
+                    <label className='p-1 pb-3 block' htmlFor="type">دسته بندی دوره آموزشی</label>
                     <div className='w-full relative'>
-                        <select id="type" name="type" placeholder="نوع دوره آموزشی"
+                        <select id="type" name="type"
                             className={`${styles.select} shadow border-[#9681ff] w-full border-[1px] border-solid p-[10px] rounded-[5px] pl-8 appearance-none`}
-                            onChange={handleChange} onBlur={handleBlur} value={values.type}
+                            onChange={handleChange} onBlur={handleBlur} value={values.category}
                         >
                             <option value={"online"}>online</option>
                             <option value={"offline"}>offline</option>

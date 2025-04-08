@@ -16,6 +16,6 @@ const subscriptionSchema = new Schema<ISubscription>({
 }, { timestamps: true }); // With this option, Mongoose automatically adds createdAt and updatedAt fields
 
 // 3. Create a Model
-const Subscription: Model<ISubscription> = mongoose.models.subscription || mongoose.model<ISubscription>('subscription', subscriptionSchema);
+const Subscription: Model<ISubscription> = mongoose.models.Subscription || mongoose.model<ISubscription>('Subscription', subscriptionSchema);
 
 export default Subscription;

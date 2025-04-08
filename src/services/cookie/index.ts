@@ -4,7 +4,7 @@ import Cookies from 'universal-cookie';
 // storeAuthToken without http only start
 // const storeAuthToken = (token: string) => {
 //     const cookies = new Cookies();
-//     cookies.set('nightlearn-token', token, {
+//     cookies.set('NHTLN', token, {
 //         path: '/',
 //         domain: ".localhost",
 //         maxAge: 3600 * 24 * 30 * 3, // 3 month
@@ -35,7 +35,7 @@ const storeAuthToken = async (token: string) => {
 const removeAuthToken = async () => {
     // without http only
     // const cookies = new Cookies();
-    // cookies.remove("nightlearn-token");
+    // cookies.remove("NHTLN"); // nightlearn-token
 
     // with http only
     try {

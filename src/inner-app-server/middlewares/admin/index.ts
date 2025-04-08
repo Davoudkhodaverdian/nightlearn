@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { authMiddleware } from "../auth";
+import { UserRole } from "@/services/models/userRole";
 
 
 // Middleware to check admin access
@@ -10,7 +11,7 @@ export async function adminMiddleware(req: any) {
         return user; // If the authentication has an issue, we return that error.
     }
 
-    if (!user.admin) {
+    if (user.role !== UserRole.Admin) {
         return NextResponse.json({
             error: {
                 message: 'دسترسی غیرمجاز، شما ادمین نیستید!',

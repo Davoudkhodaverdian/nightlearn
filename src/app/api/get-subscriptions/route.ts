@@ -16,12 +16,13 @@ export async function GET() {
     return NextResponse.json({ message: 'Reduced Subscriptions data', data: {
       subscriptions: reducedSubscriptions
     } });
-  } catch (err) {
+  } catch (error) {
 
     return NextResponse.json({
       error: {
         id: 'unable-to-get-subscriptions',
-        message: 'We were unable to get the subscriptions from our database.'
+        message: 'We were unable to get the subscriptions from our database.',
+        error
       }
     }, { status: 500 });
   }

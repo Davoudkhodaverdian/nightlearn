@@ -8,7 +8,7 @@ const useAuth = () => {
 
     // const cookie = new Cookies();
     // access cookie without httponly so that we can access cookie with javascript
-    // const { data, isLoading, error } = useAuthUserQuery(cookie.get('nightlearn-token'));
+    // const { data, isLoading, error } = useAuthUserQuery(cookie.get('NHTLN'));
 
     // access cookie with httponly so that we cannot access cookie with javascript and it does in backend and we access the cookie in the backend
     const { data, isLoading, error, refetch } = useAuthUserQuery('');

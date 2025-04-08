@@ -1,5 +1,6 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
 import bcrypt from 'bcrypt';
+import { UserRole } from '@/services/models/userRole';
 
 // 1. Define your interface
 export interface IUser extends Document {
@@ -8,7 +9,7 @@ export interface IUser extends Document {
   phonenumber: string;
   email: string;
   password: string;
-  admin: boolean;
+  role: UserRole;
   comments: Schema.Types.ObjectId[];
   createdAt: Date;
   updatedAt: Date;
@@ -21,8 +22,8 @@ const userSchema = new Schema<IUser>({
   phonenumber: { type: String },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  admin: { type: Boolean, default: false },
-  comments: [{ type: Schema.Types.ObjectId, ref: 'course' }]
+  role: { type: String, enum: Object.values(UserRole), required: true, default: UserRole.Student },
+  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 }, { timestamps: true }); // With this option, Mongoose automatically adds createdAt and updatedAt fields
 
 // pre middleware for hashing the password before save
@@ -45,6 +46,6 @@ userSchema.methods.comparePassword = async function (password: string): Promise<
   return bcrypt.compare(password, this.password);
 };
 // 3. Create a Model
-const User: Model<IUser> = mongoose.models.user || mongoose.model<IUser>('user', userSchema);
+const User: Model<IUser> = mongoose.models.User || mongoose.model<IUser>('User', userSchema);
 
 export default User;

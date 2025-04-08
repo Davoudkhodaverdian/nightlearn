@@ -11,7 +11,7 @@ interface Props {
     handleClose?: () => void
 }
 const CreateCourse: React.FC<Props> = ({ handleClose }) => {
-    const initialValues: Course = { name: "", title: "", description: "", price: "", type: "online" };
+    const initialValues: Course = { name: "", title: "", description: "", price: "", category: "" };
 
     const [createCourse, { isLoading }] = useCreateCourseMutation();
     const handleCreateCourse = async (values: Course, formikHelpers: FormikHelpers<Course>) => {

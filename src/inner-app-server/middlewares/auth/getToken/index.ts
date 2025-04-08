@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 
 const getToken = (req: NextRequest) => {
     try {
-        const token_name = 'nightlearn-token'
+        const token_name = 'NHTLN' // nightlearn-token
         const query_token = req.nextUrl.searchParams.get(token_name)
         let token =
             req.cookies.get(token_name)?.value || // access the cookie in backend when the cookie is httponly and it doesnot send from client side

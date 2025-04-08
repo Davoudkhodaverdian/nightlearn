@@ -6,6 +6,7 @@ import Loading from '@/components/common/loading';
 import UserLayout from '../userLayout';
 import BaseLayout from '../baseLayout';
 import PanelLayout from '../panelLayout';
+import { UserRole } from '@/services/models/userRole';
 
 function PrivateLayout({ children }: { children: ReactNode }) {
   const { isAuthenticated, isLoading, data } = useAuth();
@@ -22,7 +23,7 @@ function PrivateLayout({ children }: { children: ReactNode }) {
           router.push('/');
         }
       } else {
-        if (page === 'panel' && !data?.response?.user?.admin) {
+        if (page === 'panel' && !(data?.response?.user?.role === UserRole.Admin)) {
           router.push('/user');
         } else if (privateNotAllowedPages.includes(page)) {
           router.push('/user');
@@ -51,8 +52,8 @@ function PrivateLayout({ children }: { children: ReactNode }) {
   }
   if (!isAuthenticated && privatePages.includes(page)) return <></>;
   if (isAuthenticated && privateNotAllowedPages.includes(page)) return <></>;
-  if (isAuthenticated && page === 'panel' && !data?.response?.user?.admin) return <></>;
-  if (page === 'panel' && data?.response?.user?.admin && isAuthenticated) return <PanelLayout>{children}</PanelLayout>
+  if (isAuthenticated && page === 'panel' && !(data?.response?.user?.role === UserRole.Admin)) return <></>;
+  if (page === 'panel' && (data?.response?.user?.role === UserRole.Admin) && isAuthenticated) return <PanelLayout>{children}</PanelLayout>
   return isAuthenticated ? <UserLayout>{children}</UserLayout> : <BaseLayout>{children}</BaseLayout>;
 };
 

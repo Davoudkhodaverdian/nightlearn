@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectToDatabase from "@/inner-app-server/mongooose/connectToDatabase";
 import User, { IUser } from "@/inner-app-server/mongooose/models/user";
-import { createToken, customValidationResult, transform } from "@/inner-app-server/fundamental";
+import { createToken, transform } from "@/inner-app-server/fundamental";
 import { MongoServerError } from "mongodb";
 import { validators } from "@/inner-app-server/auth/register";
 import { requiredUserData } from "@/inner-app-server/auth";
@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
         const corsResponse = corsMiddleware(req);
         if (corsResponse.status === 403) return corsResponse;
         await connectToDatabase();
-        const { firstname, lastname, email, password, admin } = await req.json();
+        const { firstname, lastname, email, password, role } = await req.json();
 
         // Execute validation middleware
         const validationResponse = await validateRequest<Partial<IUser>>({ body: { firstname, lastname, email, password } }, validators);
@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
             }, { status: 400 });
         }
         // Using pre middleware for hashing the password before save
-        const newUser = new User({ firstname, lastname, email, password, admin });
+        const newUser = new User({ firstname, lastname, email, password, role });
         await newUser.save();
         // Create token and send data
         return NextResponse.json({

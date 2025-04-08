@@ -10,9 +10,12 @@ import Data from '../data.json';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation'
 import { storeAuthToken } from '@/services/cookie';
+import { UserRole } from '@/services/models/userRole';
 
 const Register: React.FC = () => {
-  const initialValues: Signup = { firstname: '', lastname: '', email: '', phonenumber: '', password: '',admin: false };
+  const initialValues: Signup = {
+    firstname: '', lastname: '', email: '', phonenumber: '', password: '', role: UserRole.Student
+  };
   const [loading, setLoading] = useState(false); // for using fetch function
   const router = useRouter();
   const getAuthUser = async (values: Signup, formikHelpers: FormikHelpers<Signup>) => {

@@ -10,9 +10,10 @@ import { useRegisterUserMutation } from '@/services/store/authApi';
 import { storeAuthToken } from '@/services/cookie';
 import { useRouter } from 'next/navigation'
 import getValidationErrorFields from '@/services/getValidationErrorFields';
+import { UserRole } from '@/services/models/userRole';
 
 const Register: React.FC = () => {
-  const initialValues: Signup = { firstname: '', lastname: '', email: '', phonenumber: '', password: '', admin: false };
+  const initialValues: Signup = { firstname: '', lastname: '', email: '', phonenumber: '', password: '', role: UserRole.Student };
   const [registerUser, { isLoading }] = useRegisterUserMutation();
   const router = useRouter();
   const getAuthUser = async (values: Signup, formikHelpers: FormikHelpers<Signup>) => {
@@ -52,8 +53,15 @@ const Register: React.FC = () => {
           getAuthUser(values, formikHelpers);
         }}
       >
-        {({ errors, touched }) => (
-          <RegisterForm loading={isLoading} errors={errors} touched={touched} />
+        {({ errors, touched, values, handleChange, handleBlur }) => (
+          <RegisterForm
+            loading={isLoading}
+            errors={errors}
+            values={values}
+            touched={touched}
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+          />
         )}
       </Formik>
       <p className='p-3'>قبلا ثبت نام کرده اید <Link className='text-[#2e2798]' href={'/login'}>وارد شوید</Link></p>

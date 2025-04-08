@@ -1,4 +1,4 @@
-import { ValidationErrorFields } from "../models";
+import { ValidationErrorFields } from "../models/ValidationErrorFields";
 interface FieldData {
     name: string
     errors: {

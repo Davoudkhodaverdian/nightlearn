@@ -16,7 +16,7 @@ const Table: React.FC<Props> = ({ data }) => {
             <th className="px-6 py-3 text-gray-700">ردیف</th>
             <th className="px-6 py-3 text-gray-700">نام دوره آموزشی</th>
             <th className="px-6 py-3 text-gray-700">عنوان انگلیسی دوره آموزشی</th>
-            <th className="px-6 py-3 text-gray-700">نوع دوره آموزشی</th>
+            <th className="px-6 py-3 text-gray-700">دسته بندی دوره آموزشی</th>
             <th className="px-6 py-3 text-gray-700">ویرایش</th>
             <th className="px-6 py-3 text-gray-700">حذف</th>
           </tr>
@@ -27,7 +27,7 @@ const Table: React.FC<Props> = ({ data }) => {
               <td className="px-6 py-4 text-gray-900">{index + 1}</td>
               <td className="px-6 py-4 text-gray-900">{course.title}</td>
               <td className="px-6 py-4 text-gray-900">{course.name}</td>
-              <td className="px-6 py-4 text-gray-900">{course.type}</td>
+              <td className="px-6 py-4 text-gray-900">{course.category}</td>
               <td className="px-6 py-4 text-gray-900">ویرایش</td>
               <td className="px-6 py-4 text-gray-900">حذف</td>
             </tr>
