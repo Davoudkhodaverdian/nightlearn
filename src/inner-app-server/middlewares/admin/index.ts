@@ -11,7 +11,7 @@ export async function adminMiddleware(req: any) {
         return user; // If the authentication has an issue, we return that error.
     }
 
-    if (user.role !== UserRole.Admin) {
+    if (!user.roles.includes(UserRole.Admin)) {
         return NextResponse.json({
             error: {
                 message: 'دسترسی غیرمجاز، شما ادمین نیستید!',

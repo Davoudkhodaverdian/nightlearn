@@ -1,21 +1,23 @@
 "use client";
 import React from "react";
-import { Course } from "@/components/panel/models";
+
 import { Formik, FormikHelpers } from "formik";
 import CourseForm from "./form";
 import fieldData from './data.json';
 import { useCreateCourseMutation } from "@/services/store/courseApi";
 import getValidationErrorFields from "@/services/getValidationErrorFields";
 import { CourseSchema } from "./courseSchema";
+import { Course } from "@/services/models/course";
 interface Props {
     handleClose?: () => void
 }
+
 const CreateCourse: React.FC<Props> = ({ handleClose }) => {
-    const initialValues: Course = { name: "", title: "", description: "", price: "", category: "" };
+    const initialValues: Course = { name: "", title: "", description: "", price: "", teacher: "", category: "" };
 
     const [createCourse, { isLoading }] = useCreateCourseMutation();
     const handleCreateCourse = async (values: Course, formikHelpers: FormikHelpers<Course>) => {
-        console.log({ values })
+        // console.log({ values })
         try {
             // fetch with rtk query
             const data = await createCourse(values).unwrap();

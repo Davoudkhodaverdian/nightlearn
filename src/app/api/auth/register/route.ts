@@ -8,6 +8,7 @@ import { validators } from "@/inner-app-server/auth/register";
 import { requiredUserData } from "@/inner-app-server/auth";
 import { validateRequest } from "@/inner-app-server/middlewares/validateRequest";
 import { corsMiddleware } from "../../middleware/cors";
+import { UserRole } from "@/services/models/userRole";
 
 export async function POST(req: NextRequest) {
     try {
@@ -32,7 +33,9 @@ export async function POST(req: NextRequest) {
             }, { status: 400 });
         }
         // Using pre middleware for hashing the password before save
-        const newUser = new User({ firstname, lastname, email, password, role });
+        const newUser = new User({
+            firstname, lastname, email, password, roles: [UserRole.User, ...(role !== UserRole.User ? [role as UserRole] : [])]
+        });
         await newUser.save();
         // Create token and send data
         return NextResponse.json({

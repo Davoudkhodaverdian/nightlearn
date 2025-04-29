@@ -1,9 +1,11 @@
 "use client";
-import { ICourseData } from "@/components/panel/models";
+
+
+import { Course } from "@/services/models/course";
 import React from "react";
 
 interface Props {
-  data: ICourseData[]
+  data: Partial<Course>[]
 }
 
 const Table: React.FC<Props> = ({ data }) => {
@@ -23,7 +25,7 @@ const Table: React.FC<Props> = ({ data }) => {
         </thead>
         <tbody>
           {data?.map((course, index) => (
-            <tr key={course.id} className="border-b hover:bg-gray-50">
+            <tr key={index} className="border-b hover:bg-gray-50">
               <td className="px-6 py-4 text-gray-900">{index + 1}</td>
               <td className="px-6 py-4 text-gray-900">{course.title}</td>
               <td className="px-6 py-4 text-gray-900">{course.name}</td>

@@ -9,7 +9,9 @@ export interface IUser extends Document {
   phonenumber: string;
   email: string;
   password: string;
-  role: UserRole;
+  avatar: string;
+  bio: string;
+  roles: UserRole[];
   comments: Schema.Types.ObjectId[];
   createdAt: Date;
   updatedAt: Date;
@@ -21,8 +23,10 @@ const userSchema = new Schema<IUser>({
   lastname: { type: String, required: true },
   phonenumber: { type: String },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  role: { type: String, enum: Object.values(UserRole), required: true, default: UserRole.Student },
+  password: { type: String, required: true, select: false },
+  avatar: { type: String },
+  bio: { type: String },
+  roles: { type: [String], enum: Object.values(UserRole), required: true, default: [UserRole.User] },
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 }, { timestamps: true }); // With this option, Mongoose automatically adds createdAt and updatedAt fields
 

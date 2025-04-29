@@ -2,8 +2,9 @@
 import React from "react";
 import ModalCmp from "@/components/common/modalCmp";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import CreateCourse from "../../../../common/createCourse";
+
 import Link from "next/link";
+import CreateCourse from "@/components/common/createCourse";
 
 const AddCourses: React.FC = () => {
 

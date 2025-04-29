@@ -1,12 +1,11 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Table from "./table";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import courseData from './courses.json';
 import PaginationCmp from "./paginationCmp";
 import AddCourses from "./add";
-import { ICourseData } from "../../models";
 import { useGetCoursesQuery } from "@/services/store/courseApi";
+import { Course } from "@/services/models/course";
 
 const Courses: React.FC = () => {
   const pathname = usePathname();
@@ -15,8 +14,10 @@ const Courses: React.FC = () => {
   const page = parseInt(searchParams.get("page") || "1");
   const rowsPerPage = parseInt(searchParams.get("rows-per-page") || "2");
   const pageTopRef = useRef<HTMLDivElement>(null);
-  const paginatedData = courseData.slice((page - 1) * rowsPerPage, page * rowsPerPage) as ICourseData[];
-  const countPage = Math.ceil(courseData.length / rowsPerPage);
+
+  const [coursesData, setCoursesData] = useState([]);
+  const paginatedData = coursesData.slice((page - 1) * rowsPerPage, page * rowsPerPage);
+  const countPage = Math.ceil(coursesData.length / rowsPerPage);
 
   useEffect(() => {
     if (paginatedData.length === 0) {
@@ -30,7 +31,11 @@ const Courses: React.FC = () => {
 
   const { data, isLoading, error } = useGetCoursesQuery('');
   useEffect(() => {
-    if (!isLoading) console.log('GetCourses', { data, error })
+    if (!isLoading) {
+      console.log('GetCourses', { data, error });
+      if (data?.courses) setCoursesData(data?.courses);
+
+    }
   }, [isLoading])
 
   return (

@@ -2,7 +2,7 @@ import { body, ValidationChain } from 'express-validator';
 import { ICourse } from '../mongooose/models/course';
 
 const requiredCourseData: (keyof ICourse)[] = [
-    'name', 'title', 'price', "episodes", "createdAt", "updatedAt"
+    'name', 'title', 'price', "episodes", "createdAt", "updatedAt", '_id'
 ]
 
 const validators: ValidationChain[] = [

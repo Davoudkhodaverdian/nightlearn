@@ -52,7 +52,7 @@ const adminNtf: React.FC = () => {
                 <textarea ref={textAreaRef} rows={10} onChange={(e => { setText(e?.target?.value) })} className="w-full min-w-full" value={text}></textarea>
                 <button className=""
                     onClick={() => {
-                        console.log({subscriptions})
+                        // console.log({subscriptions})
                         
                         if (subscriptions?.length > 0) {
                             if (textAreaRef?.current?.value)

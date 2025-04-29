@@ -8,8 +8,7 @@ import { usePathname } from "next/navigation";
 export default function PanelLayout({ children }: { children: ReactNode }) {
   const { data } = useAuth();
   const pathname = usePathname();
-  const panelPage = pathname.split('/')[2] || '';
-  const isAdminPanelPage = (pathname.split('/')[1] || '') === 'panel' && !panelPage;
+  console.log({ pathname })
   return (
     <>
       <Menu />
@@ -19,10 +18,10 @@ export default function PanelLayout({ children }: { children: ReactNode }) {
             <h1>صفحه ادمین پنل</h1>
             <p className='py-3'>{data?.response?.user?.firstname} {data?.response?.user?.lastname}  خوش آمدید</p>
             <ul>
-              <li className={isAdminPanelPage ? 'bg-[#4841a8] rounded-sm' : ''}><Link className='p-2 block ' href={`/panel`}>صفحه ادمین پنل</Link></li>
-              <li className={panelPage === 'courses' ? 'bg-[#4841a8] rounded-sm' : ''}><Link className='p-2 block ' href={`/panel/courses`}>دوره ها</Link></li>
               {pagesData.map(page => (
-                <li key={page?.id} className={panelPage === page?.slug ? 'bg-[#4841a8] rounded-sm' : ''}><Link className='p-2 block ' href={`/panel/${page?.slug}`}>{page?.title}</Link></li>
+                <li key={page?.id} className={pathname === page?.href ? 'bg-[#4841a8] rounded-sm' : ''}>
+                  <Link className='p-2 block ' href={page?.href}>{page?.title}</Link>
+                </li>
               ))}
             </ul>
           </div>

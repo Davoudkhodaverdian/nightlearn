@@ -13,6 +13,7 @@ export interface ICourse extends Document {
   updatedAt: Date;
 }
 
+
 // 2. Create a Schema corresponding to the interface
 const courseSchema = new Schema<ICourse>({
   teacher: { type: Schema.Types.ObjectId, ref: 'User', required: true },

@@ -1,13 +1,17 @@
 [
-
     {
         "id": 1,
-        "slug": "page-two",
-        "title": "صفحه دو"
+        "href": "/panel",
+        "title": "صفحه ادمین پنل"
     },
     {
         "id": 2,
-        "slug": "page-three",
-        "title": "صفحه سه"
+        "href": "/panel/courses",
+        "title": "دوره ها"
+    },
+    {
+        "id": 3,
+        "href": "/panel/categories",
+        "title": "دسته بندی ها"
     }
 ]

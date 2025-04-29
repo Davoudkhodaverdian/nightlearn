@@ -10,7 +10,7 @@ export const authApi = createApi({
   baseQuery: fetchBaseQuery({
     // baseUrl: 'http://localhost:9000/api/',  // mysql
     // baseUrl: 'http://localhost:9000/api/', // mongodb
-    baseUrl: 'http://localhost:3000/api/', // inner app server nextjs
+    baseUrl: 'http://localhost:3000/api/', // mongodb inner app server nextjs
     credentials: "include"
   }),
   tagTypes: ['User'],
@@ -46,7 +46,7 @@ export const authApi = createApi({
         try {
           await queryFulfilled; // Waiting for the request to complete
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
       },
       providesTags: ['User'],

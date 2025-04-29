@@ -23,7 +23,7 @@ function PrivateLayout({ children }: { children: ReactNode }) {
           router.push('/');
         }
       } else {
-        if (page === 'panel' && !(data?.response?.user?.role === UserRole.Admin)) {
+        if (page === 'panel' && !(data?.response?.user?.roles.includes(UserRole.Admin))) {
           router.push('/user');
         } else if (privateNotAllowedPages.includes(page)) {
           router.push('/user');
@@ -52,8 +52,8 @@ function PrivateLayout({ children }: { children: ReactNode }) {
   }
   if (!isAuthenticated && privatePages.includes(page)) return <></>;
   if (isAuthenticated && privateNotAllowedPages.includes(page)) return <></>;
-  if (isAuthenticated && page === 'panel' && !(data?.response?.user?.role === UserRole.Admin)) return <></>;
-  if (page === 'panel' && (data?.response?.user?.role === UserRole.Admin) && isAuthenticated) return <PanelLayout>{children}</PanelLayout>
+  if (isAuthenticated && page === 'panel' && !(data?.response?.user?.roles.includes(UserRole.Admin))) return <></>;
+  if (page === 'panel' && (data?.response?.user?.roles.includes(UserRole.Admin)) && isAuthenticated) return <PanelLayout>{children}</PanelLayout>
   return isAuthenticated ? <UserLayout>{children}</UserLayout> : <BaseLayout>{children}</BaseLayout>;
 };
 

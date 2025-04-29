@@ -14,10 +14,10 @@ export async function POST(req: NextRequest) {
         const corsResponse = corsMiddleware(req);
         if (corsResponse.status === 403) return corsResponse;
         await connectToDatabase();
-        const { name, title, description, type, price } = await req.json();
+        const { name, title, description, category, price } = await req.json();
 
         // Execute validation middleware
-        const validationResponse = await validateRequest<Partial<ICourse>>({ body: { name, title, price } }, validators);
+        const validationResponse = await validateRequest<Partial<ICourse>>({ body: { name, title, price, } }, validators);
         if (validationResponse) return validationResponse;
 
         // Check the title is already registered or not
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
                 status: 400
             }, { status: 400 });
         }
-        const newCourse = new Course({ name, title, description, type, price });
+        const newCourse = new Course({ name, title, description, category, price });
         await newCourse.save();
         // send data
         

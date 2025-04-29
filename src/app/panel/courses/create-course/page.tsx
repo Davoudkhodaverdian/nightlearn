@@ -6,8 +6,6 @@ export const metadata: Metadata = {
   description: 'Create Course',
 }
 export default function CreateCoursePage() {
-
-
   return (
     <CreateCourse />
   )

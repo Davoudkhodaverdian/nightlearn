@@ -1,5 +1,5 @@
 // Need to use the React-specific entry point to allow generating React hooks
-import { Course } from '@/components/panel/models';
+import { Course } from '@/services/models/course';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 // Define a service using a base URL and expected endpoints
 

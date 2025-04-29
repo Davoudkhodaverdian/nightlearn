@@ -13,7 +13,7 @@ import getValidationErrorFields from '@/services/getValidationErrorFields';
 import { UserRole } from '@/services/models/userRole';
 
 const Register: React.FC = () => {
-  const initialValues: Signup = { firstname: '', lastname: '', email: '', phonenumber: '', password: '', role: UserRole.Student };
+  const initialValues: Signup = { firstname: '', lastname: '', email: '', phonenumber: '', password: '', role: UserRole.User };
   const [registerUser, { isLoading }] = useRegisterUserMutation();
   const router = useRouter();
   const getAuthUser = async (values: Signup, formikHelpers: FormikHelpers<Signup>) => {

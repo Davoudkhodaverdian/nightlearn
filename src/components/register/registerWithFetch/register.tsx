@@ -14,7 +14,7 @@ import { UserRole } from '@/services/models/userRole';
 
 const Register: React.FC = () => {
   const initialValues: Signup = {
-    firstname: '', lastname: '', email: '', phonenumber: '', password: '', role: UserRole.Student
+    firstname: '', lastname: '', email: '', phonenumber: '', password: '', role: UserRole.User
   };
   const [loading, setLoading] = useState(false); // for using fetch function
   const router = useRouter();
@@ -72,8 +72,15 @@ const Register: React.FC = () => {
           getAuthUser(values, formikHelpers);
         }}
       >
-        {({ errors, touched }) => (
-          <RegisterForm loading={loading} errors={errors} touched={touched} />
+        {({ errors, touched, handleBlur, handleChange, values }) => (
+          <RegisterForm
+            loading={loading}
+            values={values}
+            errors={errors}
+            touched={touched}
+            handleBlur={handleBlur}
+            handleChange={handleChange}
+          />
         )}
       </Formik>
       <div className='p-3'>

@@ -1,5 +1,6 @@
 
-import Courses from "@/components/panel/page/courses";
+
+import Courses from "@/components/panel/courses";
 import { Metadata } from "next";
 export const metadata: Metadata = {
   title: 'Courses',
@@ -7,7 +8,5 @@ export const metadata: Metadata = {
 }
 
 export default function CoursesPage() {
-
-
   return <Courses />;
 }
