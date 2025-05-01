@@ -6,6 +6,7 @@ interface FieldData {
         required?: string
         email?: string
         phonenumber?: string
+        integer?: string
     }
 }
 const getValidationErrorFields = (errorsValidationData: ValidationErrorFields[], fieldData: FieldData[]) => {

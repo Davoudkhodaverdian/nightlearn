@@ -19,13 +19,22 @@
     },
     {
         "name": "category",
-        "errors": {}
+        "errors": {
+            "required": "دسته بندی الزامی است"
+        }
+    },
+    {
+        "name": "teacher",
+        "errors": {
+            "required": "معلم الزامی است"
+        }
     },
     {
         "name": "price",
         "errors": {
             "min": "قیمت بیش از حد کوتاه است",
-            "required": "قیمت الزامی است"
+            "required": "قیمت الزامی است",
+            "integer": "قیمت باید عدد باشد"
         }
     }
 ]

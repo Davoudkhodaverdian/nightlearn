@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
   if (adminUser instanceof NextResponse) {
     return adminUser; // If the admin Middleware has an issue, we return that error.
   }
-  const courses = await Course.find({});
+  const courses = await Course.find({}).populate(['teacher', 'category']);
   return NextResponse.json({
     courses: courses.map(course => (transform<ICourse>(course, requiredCourseData))), status: 200
   },

@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-
 import { Formik, FormikHelpers } from "formik";
 import CourseForm from "./form";
 import fieldData from './data.json';
@@ -13,11 +12,12 @@ interface Props {
 }
 
 const CreateCourse: React.FC<Props> = ({ handleClose }) => {
-    const initialValues: Course = { name: "", title: "", description: "", price: "", teacher: "", category: "" };
 
+    const initialValues: Course = { name: "", title: "", description: "", price: "", teacher: "", category: "" };
     const [createCourse, { isLoading }] = useCreateCourseMutation();
+
     const handleCreateCourse = async (values: Course, formikHelpers: FormikHelpers<Course>) => {
-        // console.log({ values })
+        console.log({ values })
         try {
             // fetch with rtk query
             const data = await createCourse(values).unwrap();
@@ -50,7 +50,7 @@ const CreateCourse: React.FC<Props> = ({ handleClose }) => {
                     handleCreateCourse(values, formikHelpers);
                 }}
             >
-                {({ errors, touched, handleBlur, handleChange, values }) => (
+                {({ errors, touched, handleBlur, handleChange, values, setFieldValue }) => (
                     <CourseForm
                         loading={isLoading}
                         handleClose={handleClose}
@@ -59,6 +59,7 @@ const CreateCourse: React.FC<Props> = ({ handleClose }) => {
                         touched={touched}
                         handleBlur={handleBlur}
                         handleChange={handleChange}
+                        setFieldValue={setFieldValue}
                         values={values}
                     />
                 )}

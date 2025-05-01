@@ -14,10 +14,10 @@ export async function POST(req: NextRequest) {
         const corsResponse = corsMiddleware(req);
         if (corsResponse.status === 403) return corsResponse;
         await connectToDatabase();
-        const { name, title, description, category, price } = await req.json();
+        const { name, title, description, category, price, teacher } = await req.json();
 
         // Execute validation middleware
-        const validationResponse = await validateRequest<Partial<ICourse>>({ body: { name, title, price, } }, validators);
+        const validationResponse = await validateRequest<Partial<ICourse>>({ body: { name, title, price, category, teacher } }, validators);
         if (validationResponse) return validationResponse;
 
         // Check the title is already registered or not
@@ -31,15 +31,15 @@ export async function POST(req: NextRequest) {
                 status: 400
             }, { status: 400 });
         }
-        const newCourse = new Course({ name, title, description, category, price });
+        const newCourse = new Course({ name, title, description, category, price, teacher });
         await newCourse.save();
         // send data
-        
         return NextResponse.json({
             message: 'The course has been saved!',
             response: { user: { ...transform<ICourse>(newCourse, requiredCourseData) } },
             status: 200
         }, { status: 200 });
+        
     } catch (error: unknown) {
         // If the error is related to the uniqueness of the email in MongoDB
         if (error instanceof MongoServerError && error.code === 11000) {

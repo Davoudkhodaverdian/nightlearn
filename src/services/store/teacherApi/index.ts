@@ -9,7 +9,7 @@ export const teacherApi = createApi({
     credentials: "include"
   }),
   endpoints: (builder) => ({
-    getTeachers: builder.query({
+    getTeachers: builder.mutation({
       query: (token: string) => {
         return {
           url: "teachers",
@@ -23,4 +23,4 @@ export const teacherApi = createApi({
 
 // Export hooks for usage in function components, which are
 // auto-generated based on the defined endpoints
-export const { useGetTeachersQuery } = teacherApi
+export const { useGetTeachersMutation } = teacherApi

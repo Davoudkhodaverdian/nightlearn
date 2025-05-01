@@ -6,13 +6,13 @@ export interface ICourse extends Document {
   category: mongoose.Types.ObjectId;
   name: string;
   title: string;
-  price: string;
+  price: number;
   image: String;
+  description: String;
   episodes: Schema.Types.ObjectId[];
   createdAt: Date;
   updatedAt: Date;
 }
-
 
 // 2. Create a Schema corresponding to the interface
 const courseSchema = new Schema<ICourse>({
@@ -20,7 +20,8 @@ const courseSchema = new Schema<ICourse>({
   category: { type: Schema.Types.ObjectId, ref: 'Category', required: true },
   name: { type: String, required: true },
   title: { type: String, required: true, unique: true },
-  price: { type: String, required: true },
+  price: { type: Number, required: true },
+  description: { type: String },
   image: { type: String },
   episodes: [{ type: Schema.Types.ObjectId, ref: 'Episode' }]
 }, { timestamps: true }); // With this option, Mongoose automatically adds createdAt and updatedAt fields

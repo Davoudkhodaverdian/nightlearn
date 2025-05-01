@@ -12,11 +12,11 @@ interface Props {
     handleClose?: () => void
     handleBlur: (e: React.FocusEvent<any>) => void
     handleChange: (e: React.ChangeEvent<any>) => void
+    setFieldValue: (field: string, value: any, shouldValidate?: boolean) => Promise<void | FormikErrors<Course>>
     values: Course
 }
 
-const CourseForm: React.FC<Props> = ({ errors, touched, loading, handleClose, handleBlur, handleChange, values }) => {
-
+const CourseForm: React.FC<Props> = ({ errors, touched, loading, setFieldValue, handleClose, handleBlur, handleChange, values }) => {
 
     return (
         <Form>
@@ -62,9 +62,11 @@ const CourseForm: React.FC<Props> = ({ errors, touched, loading, handleClose, ha
                     handleBlur={handleBlur}
                     handleChange={handleChange}
                     values={values}
+                    errors={errors}
+                    touched={touched}
                 />
                 <div className='p-1 w-full'>
-                    <label className='p-1 pb-3 block' htmlFor="price">قیمت دوره آموزشی</label>
+                    <label className='p-1 pb-3 block' htmlFor="price">{'قیمت دوره آموزشی (تومان)'}</label>
                     <Field
                         id="price"
                         name="price"
@@ -79,6 +81,8 @@ const CourseForm: React.FC<Props> = ({ errors, touched, loading, handleClose, ha
                 handleBlur={handleBlur}
                 handleChange={handleChange}
                 values={values}
+                errors={errors}
+                touched={touched}
             />
             <div className="flex gap-2 mt-5 p-1">
                 <button disabled={loading} className={`p-3 text-white rounded bg-[#0c056d] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-70`}
