@@ -11,13 +11,13 @@ const PaginationCmp: React.FC<Props> = ({ countPage, pageTopRef }) => {
 
     const searchParams = useSearchParams();
     const page = parseInt(searchParams.get("page") || "1");
-    const rowsPerPage = parseInt(searchParams.get("rows-per-page") || "2");
+    const rowsPerPage = parseInt(searchParams.get("per-page") || "2");
     const router = useRouter();
     const pathname = usePathname();
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
         const params = new URLSearchParams(searchParams.toString());
         params.set('page', value?.toString());
-        params.set('rows-per-page', rowsPerPage?.toString());
+        params.set('per-page', rowsPerPage?.toString());
         router.push(pathname + '?' + params, { scroll: false });
     };
     useEffect(() => {

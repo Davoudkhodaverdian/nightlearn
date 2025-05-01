@@ -22,9 +22,10 @@ export const courseApi = createApi({
 
     }),
     getCourses: builder.query({
-      query: (token: string) => {
+      query: ({ page, perPage }: { page?: number; perPage?: number }) => {
         return {
-          url: "courses",
+          url: `courses?page=${page}&per-page=${perPage}`,
+          // url: `courses`,
           method: "GET",
           // headers: { authorization: token } // send token for backend when httponly is not active
         }

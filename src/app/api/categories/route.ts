@@ -4,7 +4,7 @@ import Category, { ICategory } from '@/inner-app-server/mongooose/models/categor
 import { corsMiddleware } from '../middleware/cors';
 import { transform } from "@/inner-app-server/fundamental";
 import { requiredCategoryData } from '@/inner-app-server/category';
-import Categories from '@/components/panel/categories';
+
 
 export async function GET(req: NextRequest) {
 
