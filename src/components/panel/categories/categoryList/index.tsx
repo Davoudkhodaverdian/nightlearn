@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useGetCategoriesQuery } from "@/services/store/categoryApi";
 import Loading from "@/components/common/loading";
 import { Category } from "@/services/models/category";
+import { ExtraData } from "@/services/models";
 
 const CategoryList: React.FC = () => {
 
@@ -16,7 +17,7 @@ const CategoryList: React.FC = () => {
                     isLoading ?
                         <Loading />
                         : data?.categories?.length > 0 ?
-                            data?.categories?.map((category: Category) => <div key={category?._id} >{category?.name}</div>)
+                            data?.categories?.map((category: Category & ExtraData) => <div key={category?._id} >{category?.name}</div>)
                             : <div>در حال حاضر دسته نبدی وجود ندارد</div>
                 }
             </section>

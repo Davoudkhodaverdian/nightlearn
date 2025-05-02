@@ -4,6 +4,7 @@ import customFetch from "@/services/customFetch";
 import { Course } from "@/services/models/course";
 import { Category } from "@/services/models/category";
 import { FormikErrors, FormikTouched } from "formik";
+import { ExtraData } from "@/services/models";
 interface Props {
     handleBlur: (e: React.FocusEvent<any>) => void
     handleChange: (e: React.ChangeEvent<any>) => void
@@ -40,7 +41,7 @@ const CategoryField: React.FC<Props> = ({ handleBlur, handleChange, errors, touc
                                 <>
                                     <option value={''}>...</option>
                                     {
-                                        (categoriesData?.data as Category[])?.map((value, index) => (
+                                        (categoriesData?.data as (Category & ExtraData)[])?.map((value, index) => (
                                             <option key={value?._id} value={value?._id}>
                                                 {`${value?.name}`}
                                             </option>

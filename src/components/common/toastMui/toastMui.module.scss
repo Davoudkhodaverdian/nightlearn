@@ -1,0 +1,24 @@
+/* this file added by Bearer Web Developer  */
+.toast_mui {
+    border-radius: 10px;
+    background: #EDEDED;
+    width: 100%;
+    max-width: 310px;
+    display: flex;
+    gap: 6px;
+    justify-content: space-between;
+    padding: 10px;
+    flex-direction: row-reverse;
+
+    p {
+        padding: 20px;
+    }
+
+    .close {
+        display: flex;
+        align-items: start;
+
+        cursor: pointer;
+
+    }
+}

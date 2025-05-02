@@ -11,7 +11,4 @@ export interface User {
     bio: string
     roles: UserRole[]
     comments: []
-    createdAt?: Date
-    updatedAt?: Date
-    _id?: string
 }

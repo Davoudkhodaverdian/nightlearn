@@ -4,6 +4,7 @@ import customFetch from "@/services/customFetch";
 import { Course } from "@/services/models/course";
 import { User } from "@/services/models/user";
 import { FormikErrors, FormikTouched } from "formik";
+import { ExtraData } from "@/services/models";
 
 interface Props {
     handleBlur: (e: React.FocusEvent<any>) => void
@@ -41,7 +42,7 @@ const TeacherField: React.FC<Props> = ({ handleBlur, handleChange, errors, touch
                                 <>
                                     <option value={''}>...</option>
                                     {
-                                        (teachersData?.data as User[])?.map((value, index) => (
+                                        (teachersData?.data as (User & ExtraData)[])?.map((value, index) => (
                                             <option key={value?._id} value={value?._id}>
                                                 {`${value?.firstname} ${value?.lastname}`}
                                             </option>

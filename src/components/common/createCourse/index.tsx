@@ -3,10 +3,12 @@ import React from "react";
 import { Formik, FormikHelpers } from "formik";
 import CourseForm from "./form";
 import fieldData from './data.json';
-import { useCreateCourseMutation } from "@/services/store/courseApi";
+import { courseApi, useCreateCourseMutation } from "@/services/store/courseApi";
 import getValidationErrorFields from "@/services/getValidationErrorFields";
 import { CourseSchema } from "./courseSchema";
 import { Course } from "@/services/models/course";
+import { useAppDispatch } from "@/services/store/hooks";
+import { setToast } from "@/services/store/toast/actions";
 interface Props {
     handleClose?: () => void
 }
@@ -15,7 +17,7 @@ const CreateCourse: React.FC<Props> = ({ handleClose }) => {
 
     const initialValues: Course = { name: "", title: "", description: "", price: "", teacher: "", category: "" };
     const [createCourse, { isLoading }] = useCreateCourseMutation();
-
+    const dispatch = useAppDispatch();
     const handleCreateCourse = async (values: Course, formikHelpers: FormikHelpers<Course>) => {
         console.log({ values })
         try {
@@ -24,6 +26,8 @@ const CreateCourse: React.FC<Props> = ({ handleClose }) => {
             console.log(data);
             if (data?.status === 200) {
                 // do some thing
+                dispatch(courseApi.util.resetApiState());
+                setToast({ open: true, text: "دوره آموزشی با موفقیت ایجاد شد" })
             }
         } catch (error: any) {
             console.log(error);

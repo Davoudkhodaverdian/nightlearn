@@ -6,7 +6,4 @@ export interface Course {
     category: string
     teacher: string
     price: string
-    createdAt?: Date
-    updatedAt?: Date
-    _id?: string
 }

@@ -5,6 +5,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import PaginationCmp from "./paginationCmp";
 import AddCourses from "./add";
 import { useGetCoursesQuery } from "@/services/store/courseApi";
+import Loading from "@/components/common/loading";
+
 
 const Courses: React.FC = () => {
   const pathname = usePathname();
@@ -13,7 +15,7 @@ const Courses: React.FC = () => {
   const page = parseInt(searchParams.get("page") || "1");
   const perPage = parseInt(searchParams.get("per-page") || "10");
   const pageTopRef = useRef<HTMLDivElement>(null);
-  const { data } = useGetCoursesQuery({ page, perPage });
+  const { data, isLoading } = useGetCoursesQuery({ page, perPage });
 
   // Pagination is handled on the backend.
   const paginatedData = data && data?.courses;
@@ -37,6 +39,7 @@ const Courses: React.FC = () => {
       <h2 ref={pageTopRef} className="p-4">دوره های آموزشی</h2>
       <AddCourses />
       <Table data={paginatedData} />
+      {isLoading && <Loading />}
       <PaginationCmp countPage={countPage} pageTopRef={pageTopRef} />
     </>
   )

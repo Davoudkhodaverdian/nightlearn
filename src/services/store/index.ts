@@ -3,6 +3,7 @@ import { authApi } from './authApi'
 import { courseApi } from './courseApi'
 import { teacherApi } from './teacherApi'
 import { categoryApi } from './categoryApi'
+import toastReducer from './toast';
 // ...
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     [courseApi.reducerPath]: courseApi.reducer,
     [teacherApi.reducerPath]: teacherApi.reducer,
     [categoryApi.reducerPath]: categoryApi.reducer,
+    toast: toastReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
     [authApi.middleware, courseApi.middleware,teacherApi.middleware, categoryApi.middleware]

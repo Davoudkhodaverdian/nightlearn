@@ -24,8 +24,8 @@ export const courseApi = createApi({
     getCourses: builder.query({
       query: ({ page, perPage }: { page?: number; perPage?: number }) => {
         return {
-          url: `courses?page=${page}&per-page=${perPage}`,
-          // url: `courses`,
+          url: `courses?page=${page}&per-page=${perPage}`,  // Pagination is handled on the backend.
+          // url: `courses`, // The entire data is fetched from the backend, and pagination is implemented client-side
           method: "GET",
           // headers: { authorization: token } // send token for backend when httponly is not active
         }

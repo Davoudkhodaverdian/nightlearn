@@ -2,20 +2,18 @@
 import React from "react";
 import { Category } from "@/services/models/category";
 import { User } from "@/services/models/user";
+import { ExtraData } from "@/services/models";
 
- interface CourseData {
+interface CourseData {
   name: string
   title: string
   description: string
   category: Category
   teacher: User
   price: string
-  createdAt?: Date
-  updatedAt?: Date
-  _id?: string
 }
 interface Props {
-  data: Partial<CourseData>[]
+  data: Partial<CourseData & ExtraData>[]
 }
 
 const Table: React.FC<Props> = ({ data }) => {
@@ -33,7 +31,7 @@ const Table: React.FC<Props> = ({ data }) => {
         </thead>
         <tbody>
           {data?.map((course, index) => (
-            <tr key={index} className="border-b hover:bg-gray-50">
+            <tr key={course?._id} className="border-b hover:bg-gray-50">
               <td className="px-6 py-4 text-gray-900">{index + 1}</td>
               <td className="px-6 py-4 text-gray-900">{course?.title}</td>
               <td className="px-6 py-4 text-gray-900">{course?.name}</td>
