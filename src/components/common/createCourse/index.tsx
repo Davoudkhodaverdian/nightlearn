@@ -27,7 +27,8 @@ const CreateCourse: React.FC<Props> = ({ handleClose }) => {
             if (data?.status === 200) {
                 // do some thing
                 dispatch(courseApi.util.resetApiState());
-                setToast({ open: true, text: "دوره آموزشی با موفقیت ایجاد شد" })
+                setToast({ open: true, text: "دوره آموزشی با موفقیت ایجاد شد" });
+                if (handleClose) handleClose();
             }
         } catch (error: any) {
             console.log(error);

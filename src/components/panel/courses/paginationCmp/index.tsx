@@ -11,7 +11,7 @@ const PaginationCmp: React.FC<Props> = ({ countPage, pageTopRef }) => {
 
     const searchParams = useSearchParams();
     const page = parseInt(searchParams.get("page") || "1");
-    const rowsPerPage = parseInt(searchParams.get("per-page") || "2");
+    const rowsPerPage = parseInt(searchParams.get("per-page") || "10");
     const router = useRouter();
     const pathname = usePathname();
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {

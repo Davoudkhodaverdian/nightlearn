@@ -4,15 +4,18 @@ import { Field, Form, Formik, FormikHelpers } from "formik";
 import { CategorySchema } from "./categorySchema";
 import getValidationErrorFields from "@/services/getValidationErrorFields";
 import fieldData from './data.json';
-import { useCreateCategoryMutation } from "@/services/store/categoryApi";
+import { categoryApi, useCreateCategoryMutation } from "@/services/store/categoryApi";
 import { Category } from "@/services/models/category";
 import CategoryList from "./categoryList";
 import Loading from "@/components/common/loading";
+import { useAppDispatch } from "@/services/store/hooks";
+import { setToast } from "@/services/store/toast/actions";
 
 const Categories: React.FC = () => {
 
     const initialValues: Category = { name: "" };
     const [createCategory, { isLoading }] = useCreateCategoryMutation();
+    const dispatch = useAppDispatch();
     const handleCreateCategory = async (values: Category, formikHelpers: FormikHelpers<Category>) => {
         console.log({ values })
         try {
@@ -21,6 +24,8 @@ const Categories: React.FC = () => {
             console.log(data);
             if (data?.status === 200) {
                 // do some thing
+                dispatch(categoryApi.util.resetApiState());
+                setToast({ open: true, text: "دسته بندی دوره آموزشی با موفقیت ایجاد شد" });
             }
         } catch (error: any) {
             console.log(error);

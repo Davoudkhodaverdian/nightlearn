@@ -19,7 +19,7 @@ interface Props {
 const Table: React.FC<Props> = ({ data }) => {
 
   return (
-    <div className="p-4 overflow-x-auto max-h-[200px]">
+    <div className="p-4 overflow-x-auto max-h-[270px]">
       <table className=" bg-white border border-gray-200 shadow-md rounded-lg">
         <thead>
           <tr className="bg-gray-100 border-b">
