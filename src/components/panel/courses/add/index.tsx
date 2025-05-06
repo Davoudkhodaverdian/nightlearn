@@ -26,7 +26,7 @@ const AddCourses: React.FC = () => {
 
   return (
     <>
-      <button className="m-6 text-white rounded bg-[#0c056d] px-3 py-2 cursor-pointer" type="button" onClick={handleClickOpen}>اضافه کردن دوره +</button>
+      <button className="cursor-pointer m-6 text-white rounded bg-[#0c056d] px-3 py-2 " type="button" onClick={handleClickOpen}>اضافه کردن دوره +</button>
       <div>
         <Link className="m-6" href={'/panel/courses/create-course'}>رفتن به صفحه جداگانه برای اضافه کردن دوره</Link>
       </div>

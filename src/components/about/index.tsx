@@ -1,10 +1,10 @@
 import React from "react";
-
-const About : React.FC = ()=>{
+// this page is processig
+const About: React.FC = () => {
     return (
-        <main>
+        <section>
             <h1>About</h1>
-        </main>
+        </section>
     )
 }
 export default About;

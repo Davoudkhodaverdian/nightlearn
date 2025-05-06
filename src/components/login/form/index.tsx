@@ -50,7 +50,7 @@ const LoginForm: React.FC<Props> = ({ errors, touched, loading }) => {
   {errors.phonenumber && touched.phonenumber && <div className='text-red-600 p-2'>{errors.phonenumber}</div>}
         </div> */}
             <div className="flex flex-row-reverse justify-end">
-                <button disabled={loading} className={`p-3 text-white rounded bg-[#0c056d] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-70`}
+                <button disabled={loading} className={`cursor-pointer p-3 text-white rounded bg-[#0c056d] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-70`}
                     type="submit">
                     <div className="flex">
                         <div>ورود</div>

@@ -11,6 +11,11 @@
     },
     {
         "id": 3,
+        "href": "/panel/courses/create-course",
+        "title": "افزودن دوره آموزشی"
+    },
+    {
+        "id": 4,
         "href": "/panel/categories",
         "title": "دسته بندی ها"
     }

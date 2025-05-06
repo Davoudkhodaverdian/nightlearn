@@ -9,14 +9,10 @@ const Home = () => {
   let today = new Date().toLocaleDateString('fa-IR-u-nu-latn');
 
   return (
-    <div>
-      <div className='p-3'> تاریخ امروز {today} - {new Date().toLocaleDateString()}</div>
-      <div>
-        <div>
-          <div className='p-3'>صفحه اصلی</div>
-        </div>
-      </div>
-    </div>
+    <section className="flex  flex-col  justify-between p-4">
+      <h3 className='p-3'>تاریخ امروز {today} - {new Date().toLocaleDateString()}</h3>
+      <h1>صفحه اصلی</h1>
+    </section>
   )
 }
 

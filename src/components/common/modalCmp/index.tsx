@@ -18,7 +18,7 @@ const ModalCmp: React.FC<Props> = ({ children, open, handleClose }) => {
             onClose={handleClose}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
-            PaperProps={{ className: "w-full" }}
+
         >
             <>{children}</>
         </Dialog>

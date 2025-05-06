@@ -85,7 +85,7 @@ const CourseForm: React.FC<Props> = ({ errors, touched, loading, setFieldValue, 
                 touched={touched}
             />
             <div className="flex gap-2 mt-5 p-1">
-                <button disabled={loading} className={`p-3 text-white rounded bg-[#0c056d] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-70`}
+                <button disabled={loading} className={`cursor-pointer p-3 text-white rounded bg-[#0c056d] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-70`}
                     type="submit">
                     <div className="flex">
                         <div>افزودن دوره</div>
@@ -94,7 +94,7 @@ const CourseForm: React.FC<Props> = ({ errors, touched, loading, setFieldValue, 
                 </button>
                 {
                     handleClose &&
-                    <button onClick={handleClose} className={`p-3 text-white rounded bg-[#0c056d] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-70`}
+                    <button onClick={handleClose} className={`cursor-pointer p-3 text-white rounded bg-[#0c056d] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-70`}
                         type="button">
                         <div className="flex"><div>انصراف</div></div>
                     </button>

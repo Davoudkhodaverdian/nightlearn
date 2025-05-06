@@ -70,7 +70,7 @@ const Categories: React.FC = () => {
                             </div>
                         </div>
                         <div className="flex gap-2 mt-5 p-1">
-                            <button disabled={isLoading} className={`p-3 text-white rounded bg-[#0c056d] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-70`}
+                            <button disabled={isLoading} className={`cursor-pointer p-3 text-white rounded bg-[#0c056d] px-3 py-2 disabled:cursor-not-allowed disabled:opacity-70`}
                                 type="submit">
                                 <div className="flex">
                                     <div>افزودن دسته بندی دوره آموزشی</div>

@@ -74,7 +74,7 @@ const RegisterForm: React.FC<Props> = ({ errors, touched, loading, values, handl
                 </div>
             </div>
             <div className="flex flex-row-reverse justify-end m-1">
-                <button className='p-3 text-white rounded bg-[#0c056d] px-3 py-2 cursor-pointer' type="submit">
+                <button className='cursor-pointer p-3 text-white rounded bg-[#0c056d] px-3 py-2' type="submit">
                     <div className="flex">
                         <div>ثبت نام</div>
                         <div>{loading && <Loading />}</div>

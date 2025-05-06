@@ -1,4 +1,4 @@
-// app/api/auth/category/route.ts
+// app/api/category/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import connectToDatabase from "@/inner-app-server/mongooose/connectToDatabase";
 import { MongoServerError } from "mongodb";
