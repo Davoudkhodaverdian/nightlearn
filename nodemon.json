@@ -1,0 +1,6 @@
+{
+    "watch": ["server.ts","app-server/**/*"],
+    "ext": "js,json,ts",
+    "exec": "tsx server.ts"
+  }
+  

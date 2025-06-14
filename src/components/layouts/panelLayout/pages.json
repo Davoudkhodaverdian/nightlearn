@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "href": "/panel",
+        "title": "صفحه ادمین پنل"
+    },
+    {
+        "id": 2,
+        "href": "/panel/courses",
+        "title": "دوره ها"
+    },
+    {
+        "id": 3,
+        "href": "/panel/courses/create-course",
+        "title": "افزودن دوره آموزشی"
+    },
+    {
+        "id": 4,
+        "href": "/panel/categories",
+        "title": "دسته بندی ها"
+    }
+]

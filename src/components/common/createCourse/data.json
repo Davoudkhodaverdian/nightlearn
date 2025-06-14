@@ -1,0 +1,40 @@
+[
+    {
+        "name": "name",
+        "errors": {
+            "min": "نام بیش از حد کوتاه است",
+            "required": "نام الزامی است"
+        }
+    },
+    {
+        "name": "title",
+        "errors": {
+            "min": "عنوان بیش از حد کوتاه است",
+            "required": "عنوان الزامی است"
+        }
+    },
+    {
+        "name": "description",
+        "errors": {}
+    },
+    {
+        "name": "category",
+        "errors": {
+            "required": "دسته بندی الزامی است"
+        }
+    },
+    {
+        "name": "teacher",
+        "errors": {
+            "required": "معلم الزامی است"
+        }
+    },
+    {
+        "name": "price",
+        "errors": {
+            "min": "قیمت بیش از حد کوتاه است",
+            "required": "قیمت الزامی است",
+            "integer": "قیمت باید عدد باشد"
+        }
+    }
+]
